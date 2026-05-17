@@ -1,0 +1,149 @@
+.ai-prep-section {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.ai-prep-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 24px;
+  padding: 48px;
+  max-width: 560px;
+  width: 100%;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-prep-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+  animation: pulse 8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.1); opacity: 0.3; }
+}
+
+.ai-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.ai-icon {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.ai-icon svg {
+  color: white;
+}
+
+.ai-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.ai-subtitle {
+  font-size: 1rem;
+  opacity: 0.9;
+  line-height: 1.6;
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.ai-features {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  padding: 20px 24px;
+  text-align: left;
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.ai-feature-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  opacity: 0.8;
+}
+
+.ai-feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ai-feature-list li {
+  padding: 8px 0;
+  padding-left: 24px;
+  position: relative;
+  font-size: 0.95rem;
+}
+
+.ai-feature-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #4ade80;
+}
+
+.ai-cta-btn {
+  background: white;
+  color: #667eea;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.ai-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 600px) {
+  .ai-prep-card {
+    padding: 32px 24px;
+  }
+
+  .ai-title {
+    font-size: 1.4rem;
+  }
+
+  .ai-subtitle {
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,443 @@
+/* ===== 词语幸运盒 - 设置区 ===== */
+.lwb-settings {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.lwb-settings-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: var(--shadow-md);
+}
+
+.lwb-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.lwb-description {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+.lwb-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.lwb-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lwb-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.lwb-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  line-height: 1.6;
+  resize: vertical;
+  background: var(--bg-color);
+}
+
+.lwb-textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.lwb-input-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.lwb-word-count {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.lwb-hint {
+  color: var(--text-light);
+}
+
+.lwb-btn-start {
+  width: 100%;
+  padding: 14px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+  color: white;
+  border-radius: var(--radius-md);
+  margin-top: 8px;
+}
+
+.lwb-btn-start:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ===== 词语幸运盒 - 游戏区 ===== */
+.lwb-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 0;
+  gap: 16px;
+  min-height: 70vh;
+}
+
+/* 顶部状态栏 */
+.lwb-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 900px;
+  padding: 0 8px;
+}
+
+.lwb-topbar-center {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.lwb-status {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--primary-color);
+  background: var(--primary-light);
+  padding: 6px 14px;
+  border-radius: var(--radius-md);
+}
+
+/* 提示文字 */
+.lwb-message {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  text-align: center;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+/* 主游戏区域 */
+.lwb-game-area {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 20px 0;
+}
+
+.lwb-boxes-container {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.lwb-box-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* 词语卡片 */
+.lwb-word-card {
+  background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+  border: 3px solid #2196F3;
+  border-radius: var(--radius-lg);
+  padding: 16px 32px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1565C0;
+  box-shadow: var(--shadow-md);
+  min-width: 120px;
+  text-align: center;
+}
+
+/* 幸运盒 */
+.lwb-lucky-box {
+  width: 140px;
+  height: 140px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.lwb-box-closed {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #FFD54F 0%, #FFC107 100%);
+  border: 4px solid #FF8F00;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(255, 152, 0, 0.4);
+  animation: boxPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes boxPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+.lwb-box-question {
+  font-size: 60px;
+  font-weight: 800;
+  color: #E65100;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.lwb-lucky-box.opened {
+  animation: boxOpen 0.4s ease;
+}
+
+@keyframes boxOpen {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* 奖励 */
+.lwb-reward {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  animation: rewardPop 0.4s ease;
+}
+
+@keyframes rewardPop {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.lwb-reward-icon {
+  font-size: 50px;
+}
+
+.lwb-reward-score {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* 操作按钮 */
+.lwb-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.lwb-btn {
+  padding: 12px 28px;
+  border-radius: var(--radius-md);
+  font-size: 1.05rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.lwb-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.lwb-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.lwb-btn-back {
+  background: var(--bg-color);
+  color: var(--text-primary);
+  border: 2px solid var(--border-color);
+}
+
+.lwb-btn-back:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  background: var(--primary-light);
+}
+
+.lwb-btn-reveal {
+  background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+  color: white;
+}
+
+.lwb-btn-reveal:hover:not(:disabled) {
+  background: linear-gradient(135deg, #FFA726 0%, #FF9800 100%);
+}
+
+.lwb-btn-next {
+  background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%);
+  color: white;
+}
+
+.lwb-btn-next:hover {
+  background: linear-gradient(135deg, #66BB6A 0%, #4CAF50 100%);
+}
+
+.lwb-btn-restart {
+  background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+  color: white;
+}
+
+.lwb-btn-restart:hover {
+  background: linear-gradient(135deg, #42A5F5 0%, #2196F3 100%);
+}
+
+.lwb-btn-end {
+  background: linear-gradient(135deg, #EF5350 0%, #C62828 100%);
+  color: white;
+}
+
+.lwb-btn-end:hover {
+  background: linear-gradient(135deg, #EF5350 0%, #D32F2F 100%);
+}
+
+/* 开奖记录 */
+.lwb-history {
+  width: 100%;
+  max-width: 900px;
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  margin-top: 16px;
+}
+
+.lwb-history-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.lwb-history-empty {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  font-style: italic;
+}
+
+.lwb-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lwb-history-item {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  padding: 8px 12px;
+  background: var(--bg-color);
+  border-radius: var(--radius-sm);
+}
+
+.lwb-history-round {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.lwb-history-result {
+  color: var(--text-secondary);
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 700px) {
+  .lwb-boxes-container {
+    gap: 24px;
+  }
+
+  .lwb-word-card {
+    font-size: 1.5rem;
+    padding: 12px 20px;
+    min-width: 90px;
+  }
+
+  .lwb-lucky-box {
+    width: 110px;
+    height: 110px;
+  }
+
+  .lwb-box-question {
+    font-size: 45px;
+  }
+
+  .lwb-reward-icon {
+    font-size: 40px;
+  }
+
+  .lwb-reward-score {
+    font-size: 1.2rem;
+  }
+
+  .lwb-actions {
+    gap: 8px;
+  }
+
+  .lwb-btn {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .lwb-boxes-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .lwb-word-card {
+    font-size: 1.3rem;
+  }
+
+  .lwb-lucky-box {
+    width: 100px;
+    height: 100px;
+  }
+
+  .lwb-box-question {
+    font-size: 36px;
+  }
+
+  .lwb-topbar {
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .lwb-topbar-center {
+    order: -1;
+    width: 100%;
+    text-align: center;
+  }
+}

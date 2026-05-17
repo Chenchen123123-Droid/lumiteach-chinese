@@ -1,0 +1,391 @@
+/* ===== 猜字大挑战 - 设置区 ===== */
+.gcc-settings {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.gcc-settings-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: var(--shadow-md);
+}
+
+.gcc-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.gcc-description {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+.gcc-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.gcc-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gcc-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.gcc-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  line-height: 1.6;
+  resize: vertical;
+  background: var(--bg-color);
+}
+
+.gcc-textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.gcc-input-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.gcc-word-count {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.gcc-hint {
+  color: var(--text-light);
+}
+
+/* 难度滑块 */
+.gcc-difficulty-control {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.gcc-diff-label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.gcc-slider {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #10B981, #F59E0B, #EF4444);
+  outline: none;
+  border: none;
+}
+
+.gcc-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  border: 3px solid white;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+}
+
+.gcc-slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  border: 3px solid white;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+}
+
+.gcc-diff-current {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* 开始按钮 */
+.gcc-btn-start {
+  width: 100%;
+  padding: 14px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--primary-color) 0%, #7C3AED 100%);
+  color: white;
+  border-radius: var(--radius-md);
+  margin-top: 8px;
+}
+
+.gcc-btn-start:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ===== 猜字大挑战 - 游戏区 ===== */
+.gcc-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 0;
+  gap: 20px;
+}
+
+/* 顶部状态栏 */
+.gcc-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 820px;
+  padding: 0 8px;
+}
+
+.gcc-topbar-center {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.gcc-timer {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  background: var(--primary-light);
+  padding: 6px 14px;
+  border-radius: var(--radius-md);
+}
+
+/* 画板区域 */
+.gcc-board-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.gcc-board {
+  position: relative;
+  width: 800px;
+  height: 400px;
+  background: #FFFDE7;
+  border: 4px solid #37474F;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lg);
+}
+
+/* 答案文字层 */
+.gcc-answer-text {
+  position: relative;
+  z-index: 1;
+  font-weight: 800;
+  color: #263238;
+  text-align: center;
+  line-height: 1.3;
+  padding: 20px;
+  user-select: none;
+  word-break: break-all;
+}
+
+/* 遮挡方块网格层 */
+.gcc-mask-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  z-index: 2;
+}
+
+.gcc-block {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.gcc-block-visible {
+  background: #1565C0;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.gcc-block-visible:hover {
+  background: #1976D2;
+  transform: scale(0.92);
+}
+
+.gcc-block-hidden {
+  background: transparent;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* 提示信息 */
+.gcc-message {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--warning-color);
+  background: var(--warning-light);
+  padding: 10px 24px;
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+/* 操作按钮区 */
+.gcc-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 820px;
+}
+
+.gcc-btn {
+  padding: 10px 22px;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.gcc-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.gcc-btn-back {
+  background: var(--bg-color);
+  color: var(--text-primary);
+  border: 2px solid var(--border-color);
+}
+
+.gcc-btn-back:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  background: var(--primary-light);
+}
+
+.gcc-btn-reveal {
+  background: #1565C0;
+  color: white;
+}
+
+.gcc-btn-reveal:hover {
+  background: #1976D2;
+}
+
+.gcc-btn-answer {
+  background: #F57C00;
+  color: white;
+}
+
+.gcc-btn-answer:hover {
+  background: #FB8C00;
+}
+
+.gcc-btn-next {
+  background: #2E7D32;
+  color: white;
+}
+
+.gcc-btn-next:hover {
+  background: #388E3C;
+}
+
+.gcc-btn-restart {
+  background: #6A1B9A;
+  color: white;
+}
+
+.gcc-btn-restart:hover {
+  background: #7B1FA2;
+}
+
+.gcc-btn-end {
+  background: #C62828;
+  color: white;
+}
+
+.gcc-btn-end:hover {
+  background: #D32F2F;
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 860px) {
+  .gcc-board {
+    width: 95vw;
+    height: 300px;
+  }
+
+  .gcc-answer-text {
+    font-size: 80px !important;
+  }
+
+  .gcc-actions {
+    gap: 8px;
+  }
+
+  .gcc-btn {
+    padding: 8px 14px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .gcc-board {
+    height: 240px;
+  }
+
+  .gcc-answer-text {
+    font-size: 56px !important;
+  }
+
+  .gcc-topbar {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .gcc-topbar-center {
+    order: -1;
+    width: 100%;
+    text-align: center;
+  }
+
+  .gcc-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

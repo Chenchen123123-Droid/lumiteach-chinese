@@ -1,0 +1,607 @@
+/* ===== Spot It Card Generator ===== */
+
+.spotit-generator {
+  display: flex;
+  gap: 24px;
+  padding: 20px;
+  max-width: 1600px;
+  margin: 0 auto;
+  min-height: calc(100vh - 200px);
+}
+
+/* ===== Left Settings Panel ===== */
+.spotit-settings-panel {
+  width: 360px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: calc(100vh - 220px);
+  overflow-y: auto;
+}
+
+.settings-header {
+  text-align: center;
+  padding-bottom: 12px;
+}
+
+.settings-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.settings-header .subtitle {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.settings-section {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  box-shadow: var(--shadow-md);
+}
+
+.settings-section h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+/* Mode Toggle */
+.mode-toggle {
+  display: flex;
+  gap: 8px;
+}
+
+.mode-btn {
+  flex: 1;
+  padding: 12px;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-color);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.mode-btn:hover {
+  border-color: var(--primary-color);
+}
+
+.mode-btn.active {
+  border-color: var(--primary-color);
+  background: var(--primary-light);
+}
+
+.mode-name {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.mode-desc {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-light);
+  margin-top: 4px;
+}
+
+/* Size Grid */
+.size-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.size-btn {
+  padding: 10px 12px;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-color);
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.size-btn:hover {
+  border-color: var(--primary-color);
+}
+
+.size-btn.active {
+  border-color: var(--primary-color);
+  background: var(--primary-light);
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.word-count-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 12px;
+  padding: 10px;
+  background: var(--bg-color);
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.word-count-info .missing {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+/* Number Input */
+.number-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  background: var(--bg-color);
+  color: var(--text-primary);
+}
+
+.number-input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+/* Word Input */
+.word-input {
+  width: 100%;
+  min-height: 150px;
+  padding: 12px;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  resize: vertical;
+  background: var(--bg-color);
+  color: var(--text-primary);
+  font-family: inherit;
+  line-height: 1.5;
+}
+
+.word-input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+/* Overflow Toggle */
+.overflow-toggle {
+  display: flex;
+  gap: 8px;
+}
+
+.overflow-btn {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-color);
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.overflow-btn:hover {
+  border-color: var(--primary-color);
+}
+
+.overflow-btn.active {
+  border-color: var(--primary-color);
+  background: var(--primary-light);
+  color: var(--primary-color);
+}
+
+/* Checkbox Group */
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary-color);
+}
+
+/* Print Mode Toggle */
+.print-mode-toggle,
+.cards-per-page-toggle {
+  display: flex;
+  gap: 8px;
+}
+
+.print-mode-btn,
+.per-page-btn {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-color);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.print-mode-btn:hover,
+.per-page-btn:hover {
+  border-color: var(--primary-color);
+}
+
+.print-mode-btn.active,
+.per-page-btn.active {
+  border-color: var(--primary-color);
+  background: var(--primary-light);
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+/* Message Box */
+.message-box {
+  padding: 12px;
+  background: #fef3c7;
+  border: 2px solid #f59e0b;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  color: #92400e;
+}
+
+/* Actions */
+.settings-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.settings-actions button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.settings-actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-generate {
+  background: linear-gradient(135deg, #9333ea, #7c3aed);
+  color: white;
+}
+
+.btn-generate:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(147, 51, 234, 0.3);
+}
+
+.btn-print {
+  background: var(--primary-color);
+  color: white;
+}
+
+.btn-print:hover:not(:disabled) {
+  background: #4338ca;
+}
+
+.btn-download {
+  background: #22c55e;
+  color: white;
+}
+
+.btn-download:hover:not(:disabled) {
+  background: #16a34a;
+}
+
+.btn-clear {
+  background: var(--bg-color);
+  color: var(--text-primary);
+  border: 2px solid var(--border-color);
+}
+
+.btn-clear:hover {
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+/* ===== Right Preview Panel ===== */
+.spotit-preview-panel {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.preview-header h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pagination button {
+  padding: 8px 16px;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-color);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+  border-color: var(--primary-color);
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.page-info {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.preview-content {
+  flex: 1;
+  background: #f5f5f5;
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 600px;
+}
+
+/* Empty State */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+}
+
+.empty-icon {
+  font-size: 4rem;
+  margin-bottom: 16px;
+}
+
+.empty-state h3 {
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.empty-state p {
+  font-size: 0.95rem;
+  color: var(--text-light);
+}
+
+/* Print Area */
+.spotit-print-area {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%;
+  max-width: 800px;
+}
+
+/* Spot It Card */
+.spotit-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.spotit-card.show-cut-lines::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 2px dashed #cccccc;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.spotit-card.bw {
+  border: 3px solid #000;
+}
+
+.spotit-card.color {
+  border: 3px solid var(--primary-color);
+}
+
+.card-inner {
+  width: 85%;
+  height: 85%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.card-word {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2px;
+}
+
+.word-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.word-piece {
+  text-align: center;
+  word-break: break-word;
+  max-width: 80px;
+  line-height: 1.2;
+}
+
+.word-piece.chinese {
+  font-weight: 700;
+}
+
+.word-piece.pinyin {
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+.word-piece.english {
+  font-weight: 400;
+  opacity: 0.8;
+  font-style: italic;
+}
+
+/* ===== Print Styles ===== */
+@media print {
+  .spotit-settings-panel,
+  .preview-header,
+  .pagination {
+    display: none !important;
+  }
+
+  .spotit-generator {
+    padding: 0;
+  }
+
+  .spotit-preview-panel {
+    width: 100%;
+    box-shadow: none;
+    padding: 0;
+    background: transparent;
+    overflow: visible;
+  }
+
+  .preview-content {
+    background: white;
+    padding: 10mm;
+  }
+
+  .spotit-print-area {
+    width: 100%;
+    max-width: none;
+  }
+
+  .spotit-card {
+    box-shadow: none !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  .spotit-print-area,
+  .spotit-print-area * {
+    visibility: visible;
+  }
+
+  .spotit-print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1100px) {
+  .spotit-generator {
+    flex-direction: column;
+  }
+
+  .spotit-settings-panel {
+    width: 100%;
+    max-height: none;
+  }
+
+  .spotit-preview-panel {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .spotit-print-area {
+    grid-template-columns: 1fr;
+  }
+
+  .mode-toggle {
+    flex-direction: column;
+  }
+
+  .size-grid {
+    gap: 4px;
+  }
+
+  .size-btn {
+    padding: 8px 10px;
+    font-size: 0.8rem;
+  }
+
+  .settings-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .settings-actions button {
+    flex: 1;
+    min-width: 45%;
+  }
+}

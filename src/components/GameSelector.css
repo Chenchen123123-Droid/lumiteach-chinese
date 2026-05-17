@@ -1,0 +1,120 @@
+/* 游戏选择组件样式 */
+.game-selector {
+  margin: 32px 0;
+}
+
+.selector-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.game-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+  border: 2px solid transparent;
+}
+
+.game-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.game-card.selected {
+  border-color: var(--primary-color);
+  background: var(--primary-light);
+}
+
+.game-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.game-icon {
+  font-size: 2rem;
+}
+
+.game-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.game-description {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.game-features {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.difficulty {
+  font-size: 0.85rem;
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.feature-tag {
+  background: var(--bg-color);
+  color: var(--text-primary);
+  padding: 4px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.game-card:hover .feature-tag {
+  background: var(--primary-light);
+  color: var(--primary-color);
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .game-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .game-card {
+    padding: 20px;
+  }
+
+  .game-name {
+    font-size: 1.1rem;
+  }
+
+  .game-description {
+    font-size: 0.9rem;
+  }
+
+  .selector-title {
+    font-size: 1.25rem;
+  }
+}

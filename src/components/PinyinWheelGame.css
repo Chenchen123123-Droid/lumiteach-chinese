@@ -1,0 +1,458 @@
+/* ===== 拼音大转盘 - 游戏样式 ===== */
+
+.pinyin-wheel-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* 标题区域 */
+.pw-header {
+  text-align: center;
+}
+
+.pw-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.pw-description {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  max-width: 500px;
+  line-height: 1.6;
+}
+
+/* 转盘区域 */
+.pw-wheel-area {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* 指针 */
+.pw-pointer {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 32px;
+  color: #E53935;
+  z-index: 10;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 转盘容器 */
+.pw-wheels-container {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 转盘基础样式 */
+.pw-wheel {
+  position: absolute;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.1s ease-out;
+}
+
+/* 声母转盘 - 外圈 */
+.pw-wheel-initial {
+  width: 320px;
+  height: 320px;
+  background: linear-gradient(135deg, #FFCDD2 0%, #F8BBD9 100%);
+  border: 4px solid #E91E63;
+  box-shadow: 0 4px 20px rgba(233, 30, 99, 0.3);
+}
+
+/* 韵母转盘 - 中圈 */
+.pw-wheel-final {
+  width: 220px;
+  height: 220px;
+  background: linear-gradient(135deg, #FFF9C4 0%, #FFECB3 100%);
+  border: 4px solid #FFC107;
+  box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+}
+
+/* 声调转盘 - 内圈 */
+.pw-wheel-tone {
+  width: 130px;
+  height: 130px;
+  background: linear-gradient(135deg, #BBDEFB 0%, #B3E5FC 100%);
+  border: 4px solid #2196F3;
+  box-shadow: 0 4px 10px rgba(33, 150, 243, 0.3);
+}
+
+/* 转盘标签 */
+.pw-wheel-label {
+  position: absolute;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.5);
+  background: rgba(255, 255, 255, 0.8);
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.pw-wheel-initial .pw-wheel-label {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.pw-wheel-final .pw-wheel-label {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.pw-wheel-tone .pw-wheel-label {
+  display: none;
+}
+
+/* 转盘项目环 */
+.pw-wheel-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.pw-wheel-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -14px 0 0 -14px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #333;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pw-wheel-final .pw-wheel-item {
+  width: 26px;
+  height: 26px;
+  margin: -13px 0 0 -13px;
+  font-size: 0.8rem;
+}
+
+.pw-wheel-tone .pw-wheel-item {
+  width: 24px;
+  height: 24px;
+  margin: -12px 0 0 -12px;
+  font-size: 0.75rem;
+}
+
+/* 中心按钮 */
+.pw-center-btn {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FF5722 0%, #E91E63 100%);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: 4px solid white;
+  box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 20;
+}
+
+.pw-center-btn:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(233, 30, 99, 0.5);
+}
+
+.pw-center-btn:disabled,
+.pw-center-btn.spinning {
+  background: linear-gradient(135deg, #9E9E9E 0%, #757575 100%);
+  cursor: not-allowed;
+  animation: pulse 0.5s ease infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+/* 结果展示区 */
+.pw-result-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.pw-result-cards {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.pw-result-card {
+  padding: 16px 24px;
+  border-radius: var(--radius-md);
+  text-align: center;
+  min-width: 100px;
+  box-shadow: var(--shadow-sm);
+}
+
+.pw-card-initial {
+  background: linear-gradient(135deg, #FCE4EC 0%, #F8BBD9 100%);
+  border: 2px solid #E91E63;
+}
+
+.pw-card-final {
+  background: linear-gradient(135deg, #FFFDE7 0%, #FFF9C4 100%);
+  border: 2px solid #FFC107;
+}
+
+.pw-card-tone {
+  background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+  border: 2px solid #2196F3;
+}
+
+.pw-card-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.pw-card-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* 拼音结果 */
+.pw-pinyin-result {
+  background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+  border: 3px solid #4CAF50;
+  border-radius: var(--radius-lg);
+  padding: 20px 60px;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+}
+
+.pw-pinyin-label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.pw-pinyin-value {
+  font-size: 4rem;
+  font-weight: 800;
+  color: #2E7D32;
+  line-height: 1.2;
+}
+
+/* 提示信息 */
+.pw-message {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--warning-color);
+  background: var(--warning-light);
+  padding: 10px 24px;
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+/* 操作按钮 */
+.pw-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pw-btn {
+  padding: 12px 28px;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pw-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.pw-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.pw-btn-spin {
+  background: linear-gradient(135deg, #FF5722 0%, #E91E63 100%);
+  color: white;
+}
+
+.pw-btn-spin:hover:not(:disabled) {
+  box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
+}
+
+.pw-btn-speak {
+  background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+  color: white;
+}
+
+.pw-btn-speak:hover:not(:disabled) {
+  box-shadow: 0 4px 15px rgba(33, 150, 243, 0.4);
+}
+
+.pw-btn-speak.speaking {
+  background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%);
+}
+
+.pw-btn-reset {
+  background: var(--bg-color);
+  color: var(--text-primary);
+  border: 2px solid var(--border-color);
+}
+
+.pw-btn-reset:hover:not(:disabled) {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  background: var(--primary-light);
+}
+
+/* 提示 */
+.pw-tips {
+  text-align: center;
+}
+
+.pw-tips p {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  background: var(--bg-color);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 600px) {
+  .pinyin-wheel-game {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .pw-title {
+    font-size: 1.5rem;
+  }
+
+  .pw-wheels-container {
+    width: 280px;
+    height: 280px;
+  }
+
+  .pw-wheel-initial {
+    width: 280px;
+    height: 280px;
+  }
+
+  .pw-wheel-final {
+    width: 190px;
+    height: 190px;
+  }
+
+  .pw-wheel-tone {
+    width: 110px;
+    height: 110px;
+  }
+
+  .pw-wheel-item {
+    width: 24px;
+    height: 24px;
+    margin: -12px 0 0 -12px;
+    font-size: 0.75rem;
+  }
+
+  .pw-wheel-initial .pw-wheel-item {
+    transform: rotate(var(--i, 0deg)) translateX(115px);
+  }
+
+  .pw-center-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 1rem;
+  }
+
+  .pw-pinyin-value {
+    font-size: 3rem;
+  }
+
+  .pw-result-cards {
+    gap: 10px;
+  }
+
+  .pw-result-card {
+    padding: 12px 16px;
+    min-width: 80px;
+  }
+
+  .pw-card-value {
+    font-size: 1.25rem;
+  }
+
+  .pw-actions {
+    gap: 8px;
+  }
+
+  .pw-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .pw-wheels-container {
+    width: 240px;
+    height: 240px;
+  }
+
+  .pw-wheel-initial {
+    width: 240px;
+    height: 240px;
+  }
+
+  .pw-wheel-final {
+    width: 165px;
+    height: 165px;
+  }
+
+  .pw-wheel-tone {
+    width: 95px;
+    height: 95px;
+  }
+
+  .pw-pinyin-value {
+    font-size: 2.5rem;
+  }
+}

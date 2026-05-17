@@ -1,0 +1,154 @@
+/* 全局样式重置和基础设置 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* 主色调 - 蓝紫色系 SaaS Professional */
+  --color-primary: #5B5CFF;
+  --color-primary-dark: #4338CA;
+  --color-primary-light: #EEF2FF;
+  --color-accent: #FFB020;
+
+  /* 辅助色 */
+  --success-color: #10B981;
+  --success-light: #D1FAE5;
+  --warning-color: #F59E0B;
+  --warning-light: #FEF3C7;
+  --error-color: #EF4444;
+  --error-light: #FEE2E2;
+
+  /* 中性色 */
+  --color-bg: #F7F8FC;
+  --color-surface: #FFFFFF;
+  --color-text: #111827;
+  --color-muted: #6B7280;
+  --color-border: #E5E7EB;
+
+  /* 备用兼容 */
+  --primary-color: #5B5CFF;
+  --primary-hover: #4338CA;
+  --primary-light: #EEF2FF;
+  --bg-color: #F7F8FC;
+  --card-bg: #FFFFFF;
+  --text-primary: #111827;
+  --text-secondary: #6B7280;
+  --text-light: #9CA3AF;
+  --border-color: #E5E7EB;
+
+  /* 字体 */
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif;
+
+  /* 圆角 */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  /* 阴影 */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+  /* 过渡 */
+  --transition: all 0.2s ease;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 按钮基础样式 */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: var(--transition);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 输入框基础样式 */
+input, textarea {
+  font-family: inherit;
+  border: 1px solid var(--border-color);
+  outline: none;
+  transition: var(--transition);
+}
+
+input:focus, textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-light);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* 全屏模式样式 */
+.fullscreen-mode {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  background: var(--card-bg);
+  padding: 40px;
+  overflow: auto;
+}
+
+.fullscreen-mode .game-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  font-size: 1.5rem;
+}
+
+/* 响应式字体 */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1440px) {
+  html {
+    font-size: 18px;
+  }
+}
