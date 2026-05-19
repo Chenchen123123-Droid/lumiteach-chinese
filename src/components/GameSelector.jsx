@@ -11,6 +11,25 @@ import './GameSelector.css';
 // 游戏配置的多语言（保留5种语言支持）
 const gameTranslations = {
   'zh-CN': {
+    // 新增工具
+    slingshot: {
+      name: '弹弓大作战',
+      description: '输入主题或批量导入题目，把A/B选择题变成弹弓射击挑战',
+      difficulty: ['课堂互动'],
+      features: ['A/B选择题', '动画音效', '词汇复习']
+    },
+    typing: {
+      name: '中文输入挑战',
+      description: '老师导入词库，学生根据提示输入中文，限时挑战打字速度',
+      difficulty: ['个人挑战'],
+      features: ['中文输入', '听写练习', '排行榜']
+    },
+    snake: {
+      name: '成语贪吃蛇',
+      description: '控制小蛇按顺序吃掉汉字，完成成语挑战',
+      difficulty: ['课堂游戏'],
+      features: ['成语复习', '汉字顺序', '词语记忆']
+    },
     disappearing: {
       name: '课文消失挑战',
       description: '逐轮隐藏文字，锻炼学生的记忆和复述能力',
@@ -115,6 +134,25 @@ const gameTranslations = {
     }
   },
   'zh-TW': {
+    // 新增工具
+    slingshot: {
+      name: '彈弓大作戰',
+      description: '輸入主題或批量導入題目，把A/B選擇題變成彈弓射擊挑戰',
+      difficulty: ['課堂互動'],
+      features: ['A/B選擇題', '動畫音效', '詞彙複習']
+    },
+    typing: {
+      name: '中文輸入挑戰',
+      description: '老師導入詞庫，學生根據提示輸入中文，限時挑戰打字速度',
+      difficulty: ['個人挑戰'],
+      features: ['中文輸入', '聽寫練習', '排行榜']
+    },
+    snake: {
+      name: '成語貪吃蛇',
+      description: '控制小蛇按順序吃掉漢字，完成成語挑戰',
+      difficulty: ['課堂遊戲'],
+      features: ['成語複習', '漢字順序', '詞語記憶']
+    },
     disappearing: {
       name: '課文消失挑戰',
       description: '逐輪隱藏文字，鍛鍊學生的記憶和複述能力',
@@ -219,6 +257,25 @@ const gameTranslations = {
     }
   },
   'en': {
+    // New tools
+    slingshot: {
+      name: 'Slingshot Quiz Battle',
+      description: 'Turn A/B quiz questions into a slingshot shooting challenge with animation',
+      difficulty: ['Classroom Game'],
+      features: ['A/B Quiz', 'Animation', 'Vocabulary Review']
+    },
+    typing: {
+      name: 'Chinese Typing Challenge',
+      description: 'Students type Chinese from prompts in a timed typing challenge',
+      difficulty: ['Personal Challenge'],
+      features: ['Chinese Typing', 'Dictation', 'Leaderboard']
+    },
+    snake: {
+      name: 'Idiom Snake Game',
+      description: 'Control a snake to collect Chinese characters in the correct order',
+      difficulty: ['Classroom Game'],
+      features: ['Idiom Review', 'Character Order', 'Vocabulary']
+    },
     disappearing: {
       name: 'Text Disappearing Challenge',
       description: 'Progressively hide text to train students\' memory and retelling skills',
@@ -546,6 +603,11 @@ const difficultyLabelTranslations = {
 
 function GameSelector({ selectedGame, onGameSelect, language = 'zh' }) {
   const games = [
+    // 新增游戏
+    { id: 'slingshot', icon: '🎯' },
+    { id: 'typing', icon: '⌨️' },
+    { id: 'snake', icon: '🐍' },
+    // 原有游戏
     { id: 'disappearing', icon: '🎯' },
     { id: 'sentence', icon: '🔄' },
     { id: 'matching', icon: '👥' },
