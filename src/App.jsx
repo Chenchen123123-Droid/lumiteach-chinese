@@ -5,6 +5,7 @@ import { isPreviewMode } from './config/accessMode';
 import Navbar from './components/Navbar';
 import HomePage from './components/HomePage';
 import GameSelector from './components/GameSelector';
+import ToolGrid from './components/ToolGrid';
 import AIPrepComingSoon from './components/AIPrepComingSoon';
 import DisappearingTextGame from './components/DisappearingTextGame';
 import SentenceOrderGame from './components/SentenceOrderGame';
@@ -246,11 +247,7 @@ function AppContent() {
       case 'tools':
         return (
           <div className="tools-page">
-            <GameSelector
-              selectedGame={selectedGame}
-              onGameSelect={handleGameSelect}
-              language={lang}
-            />
+            <ToolGrid onToolSelect={handleGameSelect} />
           </div>
         );
       case 'ai-prep':
