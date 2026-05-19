@@ -1,140 +1,148 @@
-/* 游戏选择组件样式 - 修复布局问题 */
+/* 游戏选择器 - 强制修复布局 */
 .game-selector {
-  margin: 32px 0;
-  padding: 0 16px;
-  width: 100%;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 32px auto !important;
+  padding: 0 16px !important;
+  width: 100% !important;
+  max-width: 1200px !important;
+  display: block !important;
+  position: relative !important;
 }
 
 .selector-title {
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #111827;
-  margin-bottom: 24px;
+  text-align: center !important;
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  color: #111827 !important;
+  margin-bottom: 24px !important;
+  display: block !important;
 }
 
 .game-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  width: 100%;
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 20px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  position: relative !important;
 }
 
 .game-card {
-  background: #FFFFFF;
-  border-radius: 16px;
-  padding: 20px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  border: 2px solid transparent;
-  min-height: 160px;
-  display: flex;
-  flex-direction: column;
+  background: #FFFFFF !important;
+  border-radius: 16px !important;
+  padding: 20px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+  border: 2px solid transparent !important;
+  min-height: 160px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  position: relative !important;
+  overflow: visible !important;
+  z-index: 1 !important;
 }
 
 .game-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-  border-color: #5B5CFF;
-}
-
-.game-card.selected {
-  border-color: #5B5CFF;
-  background: #F0F1FF;
+  transform: translateY(-4px) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
+  border-color: #5B5CFF !important;
+  z-index: 10 !important;
 }
 
 .game-card-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  margin-bottom: 12px !important;
+  flex-shrink: 0 !important;
 }
 
 .game-icon {
-  font-size: 1.8rem;
-  line-height: 1;
+  font-size: 1.8rem !important;
+  line-height: 1 !important;
+  flex-shrink: 0 !important;
 }
 
 .game-name {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #111827;
-  margin: 0;
-  line-height: 1.3;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  color: #111827 !important;
+  margin: 0 !important;
+  line-height: 1.3 !important;
+  white-space: normal !important;
 }
 
 .game-description {
-  font-size: 0.85rem;
-  color: #6B7280;
-  line-height: 1.5;
-  margin-bottom: 16px;
-  flex: 1;
+  font-size: 0.85rem !important;
+  color: #6B7280 !important;
+  line-height: 1.5 !important;
+  margin-bottom: 16px !important;
+  flex: 1 !important;
+  white-space: normal !important;
+  overflow: visible !important;
 }
 
 .game-features {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  flex-shrink: 0 !important;
 }
 
 .difficulty {
-  font-size: 0.8rem;
-  color: #5B5CFF;
-  font-weight: 500;
+  font-size: 0.8rem !important;
+  color: #5B5CFF !important;
+  font-weight: 500 !important;
 }
 
 .features {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
 }
 
 .feature-tag {
-  background: #F3F4F6;
-  color: #374151;
-  padding: 3px 10px;
-  border-radius: 6px;
-  font-size: 0.75rem;
-  font-weight: 500;
+  background: #F3F4F6 !important;
+  color: #374151 !important;
+  padding: 3px 10px !important;
+  border-radius: 6px !important;
+  font-size: 0.75rem !important;
+  font-weight: 500 !important;
 }
 
 /* 响应式 */
 @media (max-width: 1024px) {
   .game-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr) !important;
   }
 }
 
 @media (max-width: 768px) {
   .game-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
   }
 
   .game-card {
-    padding: 16px;
-    min-height: 140px;
+    padding: 16px !important;
+    min-height: 140px !important;
   }
 
   .game-name {
-    font-size: 1rem;
+    font-size: 1rem !important;
   }
 
   .game-description {
-    font-size: 0.8rem;
+    font-size: 0.8rem !important;
   }
 
   .selector-title {
-    font-size: 1.25rem;
+    font-size: 1.25rem !important;
   }
 }
 
 @media (max-width: 480px) {
   .game-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
   }
 }

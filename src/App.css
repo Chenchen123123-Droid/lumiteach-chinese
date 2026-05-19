@@ -98,6 +98,9 @@
   padding: 40px 24px;
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
+  display: block;
+  position: relative;
 }
 
 /* 价格页面 */
