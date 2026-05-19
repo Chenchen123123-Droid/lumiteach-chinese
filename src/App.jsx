@@ -7,6 +7,7 @@ import HomePage from './components/HomePage';
 import GameSelector from './components/GameSelector';
 import ToolGrid from './components/ToolGrid';
 import AIPrepComingSoon from './components/AIPrepComingSoon';
+import AIComingSoon from './components/AIComingSoon';
 import DisappearingTextGame from './components/DisappearingTextGame';
 import SentenceOrderGame from './components/SentenceOrderGame';
 import WordMatchingGame from './components/WordMatchingGame';
@@ -147,8 +148,8 @@ function AppContent() {
       setView('tools');
     } else if (sectionId === 'pricing') {
       setShowPricing(true);
-    } else if (sectionId === 'ai-prep') {
-      setView('ai-prep');
+    } else if (sectionId === 'ai') {
+      setView('ai');
     } else {
       setView('home');
     }
@@ -250,8 +251,8 @@ function AppContent() {
             <ToolGrid onToolSelect={handleGameSelect} />
           </div>
         );
-      case 'ai-prep':
-        return <AIPrepComingSoon lang={lang} />;
+      case 'ai':
+        return <AIComingSoon onNavigate={handleNavigate} />;
       default:
         return <HomePage onSelectTool={handleToolSelect} onNavigate={handleNavigate} />;
     }
@@ -259,7 +260,7 @@ function AppContent() {
 
   return (
     <div className="app">
-      <Navbar onToggleFullscreen={toggleFullscreen} />
+      <Navbar onNavigate={handleNavigate} currentPage={view} />
 
       <main className="main-content">
         {renderContent()}
