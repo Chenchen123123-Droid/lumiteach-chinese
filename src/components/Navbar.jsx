@@ -6,8 +6,8 @@ import './Navbar.css';
  * 顶部导航栏组件
  * 更新为专业的 SaaS 风格导航
  */
-function Navbar({ onToggleFullscreen }) {
-  const { lang, t, setLanguage } = useLanguage();
+function Navbar({ onToggleFullscreen, onNavigate }) {
+  const { lang, t, setLang } = useLanguage();
 
   const handleLogin = () => {
     alert(lang === 'zh' ? '登录功能即将开放' : 'Login coming soon');
@@ -42,7 +42,7 @@ function Navbar({ onToggleFullscreen }) {
           <select
             className="lang-select"
             value={lang}
-            onChange={(e) => setLanguage(e.target.value)}
+            onChange={(e) => setLang(e.target.value)}
           >
             <option value="zh">中文</option>
             <option value="en">English</option>

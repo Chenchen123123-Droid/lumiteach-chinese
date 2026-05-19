@@ -115,20 +115,22 @@ function AppContent() {
   };
 
   const handleGameSelect = (gameId) => {
+    // 设置选中的游戏
+    setSelectedGame(gameId);
+
     // 预览模式下，所有工具都可以直接打开
     if (isPreviewMode) {
-      setSelectedGame(gameId);
+      setIsGenerating(true);
       return;
     }
 
     // 付费墙模式下，按照权限判断
     const toolAccess = toolAccessMap[gameId] || 'free';
     if (requireUpgrade(toolAccess)) {
-      setSelectedGame(gameId);
       setShowUpgradeModal(true);
-    } else {
-      setSelectedGame(gameId);
     }
+    // 无论是否需要升级，都可以开始使用
+    setIsGenerating(true);
   };
 
   const handleToolSelect = (toolId) => {
