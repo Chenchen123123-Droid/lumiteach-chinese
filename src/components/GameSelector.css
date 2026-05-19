@@ -1,120 +1,140 @@
-/* 游戏选择组件样式 */
+/* 游戏选择组件样式 - 修复布局问题 */
 .game-selector {
   margin: 32px 0;
+  padding: 0 16px;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .selector-title {
   text-align: center;
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: #111827;
   margin-bottom: 24px;
 }
 
 .game-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 24px;
-  max-width: 1000px;
-  margin: 0 auto;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  width: 100%;
 }
 
 .game-card {
-  background: var(--card-bg);
-  border-radius: var(--radius-lg);
-  padding: 24px;
+  background: #FFFFFF;
+  border-radius: 16px;
+  padding: 20px;
   cursor: pointer;
-  transition: var(--transition);
-  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   border: 2px solid transparent;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
 }
 
 .game-card:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  border-color: #5B5CFF;
 }
 
 .game-card.selected {
-  border-color: var(--primary-color);
-  background: var(--primary-light);
+  border-color: #5B5CFF;
+  background: #F0F1FF;
 }
 
 .game-card-header {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .game-icon {
-  font-size: 2rem;
+  font-size: 1.8rem;
+  line-height: 1;
 }
 
 .game-name {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: #111827;
+  margin: 0;
+  line-height: 1.3;
 }
 
 .game-description {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 20px;
+  font-size: 0.85rem;
+  color: #6B7280;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  flex: 1;
 }
 
 .game-features {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .difficulty {
-  font-size: 0.85rem;
-  color: var(--primary-color);
+  font-size: 0.8rem;
+  color: #5B5CFF;
   font-weight: 500;
 }
 
 .features {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
 }
 
 .feature-tag {
-  background: var(--bg-color);
-  color: var(--text-primary);
-  padding: 4px 12px;
-  border-radius: var(--radius-sm);
-  font-size: 0.8rem;
+  background: #F3F4F6;
+  color: #374151;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
   font-weight: 500;
 }
 
-.game-card:hover .feature-tag {
-  background: var(--primary-light);
-  color: var(--primary-color);
+/* 响应式 */
+@media (max-width: 1024px) {
+  .game-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
-/* 响应式 */
 @media (max-width: 768px) {
   .game-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 
   .game-card {
-    padding: 20px;
+    padding: 16px;
+    min-height: 140px;
   }
 
   .game-name {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .game-description {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
 
   .selector-title {
     font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-grid {
+    grid-template-columns: 1fr;
   }
 }
