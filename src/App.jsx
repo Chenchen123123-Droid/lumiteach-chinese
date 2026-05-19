@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { LanguageProvider, useLanguage } from './i18n/LanguageContext';
 import { SubscriptionProvider, useSubscription } from './context/SubscriptionContext';
+import { ToastProvider } from './context/ToastContext';
 import { isPreviewMode } from './config/accessMode';
 import Navbar from './components/Navbar';
 import HomePage from './components/HomePage';
-import GameSelector from './components/GameSelector';
 import ToolGrid from './components/ToolGrid';
-import AIPrepComingSoon from './components/AIPrepComingSoon';
 import AIComingSoon from './components/AIComingSoon';
+import ToastDisplay from './components/ToastDisplay';
 import DisappearingTextGame from './components/DisappearingTextGame';
 import SentenceOrderGame from './components/SentenceOrderGame';
 import WordMatchingGame from './components/WordMatchingGame';
@@ -263,7 +263,9 @@ function AppContent() {
       <Navbar onNavigate={handleNavigate} currentPage={view} />
 
       <main className="main-content">
-        {renderContent()}
+        <div className="page-transition">
+          {renderContent()}
+        </div>
       </main>
 
       {/* Footer */}
@@ -287,6 +289,9 @@ function AppContent() {
         onClose={() => setShowUpgradeModal(false)}
         onViewPricing={handleViewPricing}
       />
+
+      {/* Toast 提示 */}
+      <ToastDisplay />
     </div>
   );
 }
@@ -297,9 +302,11 @@ function AppContent() {
 function App() {
   return (
     <LanguageProvider>
-      <SubscriptionProvider>
-        <AppContent />
-      </SubscriptionProvider>
+      <ToastProvider>
+        <SubscriptionProvider>
+          <AppContent />
+        </SubscriptionProvider>
+      </ToastProvider>
     </LanguageProvider>
   );
 }

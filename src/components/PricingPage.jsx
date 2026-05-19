@@ -1,6 +1,7 @@
 import React from 'react';
 import { subscriptionPlans } from '../config/subscriptionPlans';
 import { isPreviewMode } from '../config/accessMode';
+import { useToast } from '../context/ToastContext';
 import './PricingPage.css';
 
 /**
@@ -9,6 +10,7 @@ import './PricingPage.css';
  */
 function PricingPage({ lang = 'zh', onSelectPlan }) {
   const plans = Object.values(subscriptionPlans);
+  const { showInfo } = useToast();
 
   const handlePlanClick = (planId) => {
     // 如果是Free计划，直接返回
@@ -17,13 +19,13 @@ function PricingPage({ lang = 'zh', onSelectPlan }) {
     // 显示提示信息
     const message = isPreviewMode
       ? (lang === 'zh'
-          ? '订阅功能即将开放。当前为公开体验版，所有工具都可以免费试用。'
-          : 'Subscription is coming soon. This is a public preview, and all tools are currently available to try for free.')
+          ? '会员系统即将开放，目前可联系人工开通。'
+          : 'Membership is coming soon. Manual access is available by contact.')
       : (lang === 'zh'
           ? '订阅功能即将开放，当前为前端演示版本。'
           : 'Subscription is coming soon. This is a front-end demo for now.');
 
-    alert(message);
+    showInfo(message);
   };
 
   return (

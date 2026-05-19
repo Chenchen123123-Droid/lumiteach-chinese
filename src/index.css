@@ -54,6 +54,8 @@
 
   /* 过渡 */
   --transition: all 0.2s ease;
+  --transition-fast: all 0.15s ease;
+  --transition-slow: all 0.3s ease;
 }
 
 html {
@@ -84,9 +86,27 @@ button {
   transition: var(--transition);
 }
 
+button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* 可点击元素基础样式 */
+.clickable {
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.clickable:hover {
+  transform: translateY(-2px);
+}
+
+.clickable:active:not(:disabled) {
+  transform: scale(0.98);
 }
 
 /* 输入框基础样式 */

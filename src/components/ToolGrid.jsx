@@ -422,8 +422,13 @@ function ToolGrid({ onToolSelect }) {
             </div>
 
             <div className="tools-grid">
-              {tools.map(tool => (
-                <div key={tool.id} className="tool-card">
+              {tools.map((tool, index) => (
+                <div
+                  key={tool.id}
+                  className="tool-card"
+                  onClick={() => handleToolClick(tool.id)}
+                  style={{ animationDelay: `${index * 0.05}s` }}
+                >
                   <div className="tool-card-header">
                     <span className="tool-icon">{tool.icon}</span>
                     <span className={`tool-access ${getAccessClass(tool.access)}`}>
@@ -447,7 +452,7 @@ function ToolGrid({ onToolSelect }) {
 
                   <button
                     className="tool-start-btn"
-                    onClick={() => handleToolClick(tool.id)}
+                    onClick={(e) => { e.stopPropagation(); handleToolClick(tool.id); }}
                   >
                     {lang === 'zh' ? '开始使用' : 'Start'}
                   </button>

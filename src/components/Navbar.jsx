@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 import './Navbar.css';
 
@@ -6,9 +6,18 @@ import './Navbar.css';
  * 顶部导航栏组件
  */
 function Navbar({ onNavigate, currentPage = 'home' }) {
-  const { lang, t, setLang } = useLanguage();
+  const { lang, setLang } = useLanguage();
+  const [scrolled, setScrolled] = useState(false);
 
-	const handleNavClick = (page, e) => {
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleNavClick = (page, e) => {
 		e.preventDefault();
 		if (onNavigate) {
 			onNavigate(page);
@@ -18,7 +27,7 @@ function Navbar({ onNavigate, currentPage = 'home' }) {
 	const isActive = (page) => currentPage === page ? 'active' : '';
 
 	return (
-		<nav className="navbar">
+		<nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
 			<div className="navbar-container">
 				<div className="navbar-brand">
 					<a href="#" className="brand-link" onClick={(e) => handleNavClick('home', e)}>
