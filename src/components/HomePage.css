@@ -2,6 +2,17 @@
   width: 100%;
 }
 
+/* Preview Banner */
+.preview-banner {
+  background: linear-gradient(135deg, #fef3c7 0%, #fef9c3 100%);
+  border-bottom: 1px solid #fcd34d;
+  padding: 12px 24px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #92400e;
+  font-weight: 500;
+}
+
 /* Hero Section */
 .hero-section {
   padding: 80px 24px 100px;

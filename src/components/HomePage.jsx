@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 import { toolsConfig, categories } from '../config/toolsConfig';
+import { isPreviewMode } from '../config/accessMode';
 import './HomePage.css';
 
 /**
@@ -24,6 +25,15 @@ function HomePage({ onSelectTool, onNavigate }) {
 
   return (
     <div className="home-page">
+      {/* Preview Banner */}
+      {isPreviewMode && (
+        <div className="preview-banner">
+          {lang === 'zh'
+            ? '🎉 当前为公开体验版，所有工具暂时免费开放'
+            : '🎉 Public preview: all tools are currently available to try for free'}
+        </div>
+      )}
+
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-content">

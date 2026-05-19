@@ -1,5 +1,6 @@
 import React from 'react';
 import { subscriptionPlans } from '../config/subscriptionPlans';
+import { isPreviewMode } from '../config/accessMode';
 import './PricingPage.css';
 
 /**
@@ -10,16 +11,19 @@ function PricingPage({ lang = 'zh', onSelectPlan }) {
   const plans = Object.values(subscriptionPlans);
 
   const handlePlanClick = (planId) => {
+    // 如果是Free计划，直接返回
     if (planId === 'free') return;
-    if (onSelectPlan) {
-      onSelectPlan(planId);
-    } else {
-      alert(
-        lang === 'zh'
+
+    // 显示提示信息
+    const message = isPreviewMode
+      ? (lang === 'zh'
+          ? '订阅功能即将开放。当前为公开体验版，所有工具都可以免费试用。'
+          : 'Subscription is coming soon. This is a public preview, and all tools are currently available to try for free.')
+      : (lang === 'zh'
           ? '订阅功能即将开放，当前为前端演示版本。'
-          : 'Subscription is coming soon. This is a front-end demo for now.'
-      );
-    }
+          : 'Subscription is coming soon. This is a front-end demo for now.');
+
+    alert(message);
   };
 
   return (
@@ -33,6 +37,14 @@ function PricingPage({ lang = 'zh', onSelectPlan }) {
             ? '选择适合你的中文课堂工具方案'
             : 'Choose the best plan for your Chinese classroom'}
         </p>
+
+        {isPreviewMode && (
+          <p className="preview-notice">
+            {lang === 'zh'
+              ? '🎉 当前为公开体验版，所有工具暂时免费开放'
+              : '🎉 Public Preview: All tools are currently available'}
+          </p>
+        )}
       </div>
 
       <div className="pricing-cards">

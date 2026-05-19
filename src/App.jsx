@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { LanguageProvider, useLanguage } from './i18n/LanguageContext';
 import { SubscriptionProvider, useSubscription } from './context/SubscriptionContext';
+import { isPreviewMode } from './config/accessMode';
 import Navbar from './components/Navbar';
 import HomePage from './components/HomePage';
 import GameSelector from './components/GameSelector';
@@ -66,6 +67,25 @@ function AppContent() {
   const noTextRequired = ['gomoku', 'gacha', 'guesschar', 'pinyinwheel', 'pinyinguess', 'luckybox', 'minesweeper', 'worksheet', 'luckypicker', 'seatmanager', 'hanzicomponent', 'chineseuno', 'wordcloud', 'spotit', 'matching'];
 
   const handleGenerate = () => {
+    // 预览模式下，所有工具都可以直接生成
+    if (isPreviewMode) {
+      if (noTextRequired.includes(selectedGame)) {
+        setIsGenerating(true);
+        return;
+      }
+      if (!text.trim()) {
+        alert(t('messages.emptyInput'));
+        return;
+      }
+      if (!selectedGame) {
+        alert(t('messages.selectGameFirst'));
+        return;
+      }
+      setIsGenerating(true);
+      return;
+    }
+
+    // 付费墙模式下，按照权限判断
     const toolAccess = toolAccessMap[selectedGame] || 'free';
 
     if (requireUpgrade(toolAccess)) {
@@ -89,8 +109,14 @@ function AppContent() {
   };
 
   const handleGameSelect = (gameId) => {
-    const toolAccess = toolAccessMap[gameId] || 'free';
+    // 预览模式下，所有工具都可以直接打开
+    if (isPreviewMode) {
+      setSelectedGame(gameId);
+      return;
+    }
 
+    // 付费墙模式下，按照权限判断
+    const toolAccess = toolAccessMap[gameId] || 'free';
     if (requireUpgrade(toolAccess)) {
       setSelectedGame(gameId);
       setShowUpgradeModal(true);
