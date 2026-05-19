@@ -23,6 +23,9 @@ import HanziComponentCardGenerator from './components/HanziComponentCardGenerato
 import ChineseUnoCardGenerator from './components/ChineseUnoCardGenerator';
 import WordCloudGenerator from './components/WordCloudGenerator';
 import SpotItCardGenerator from './components/SpotItCardGenerator';
+import SlingshotQuizBattle from './components/SlingshotQuizBattle';
+import ChineseTypingChallenge from './components/ChineseTypingChallenge';
+import IdiomSnakeGame from './components/IdiomSnakeGame';
 import UpgradeModal from './components/UpgradeModal';
 import PricingPage from './components/PricingPage';
 import './App.css';
@@ -45,6 +48,9 @@ function AppContent() {
 
   // 工具权限配置
   const toolAccessMap = {
+    slingshot: 'free',
+    typing: 'limited_free',
+    snake: 'limited_free',
     disappearing: 'pro',
     sentence: 'pro',
     matching: 'limited_free',
@@ -64,7 +70,7 @@ function AppContent() {
     luckypicker: 'free'
   };
 
-  const noTextRequired = ['gomoku', 'gacha', 'guesschar', 'pinyinwheel', 'pinyinguess', 'luckybox', 'minesweeper', 'worksheet', 'luckypicker', 'seatmanager', 'hanzicomponent', 'chineseuno', 'wordcloud', 'spotit', 'matching'];
+  const noTextRequired = ['slingshot', 'typing', 'snake', 'gomoku', 'gacha', 'guesschar', 'pinyinwheel', 'pinyinguess', 'luckybox', 'minesweeper', 'worksheet', 'luckypicker', 'seatmanager', 'hanzicomponent', 'chineseuno', 'wordcloud', 'spotit', 'matching'];
 
   const handleGenerate = () => {
     // 预览模式下，所有工具都可以直接生成
@@ -162,6 +168,12 @@ function AppContent() {
 
   const renderTool = () => {
     switch (selectedGame) {
+      case 'slingshot':
+        return <SlingshotQuizBattle />;
+      case 'typing':
+        return <ChineseTypingChallenge />;
+      case 'snake':
+        return <IdiomSnakeGame />;
       case 'disappearing':
         return <DisappearingTextGame text={text} isFullscreen={isFullscreen} onToggleFullscreen={toggleFullscreen} />;
       case 'sentence':

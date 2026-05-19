@@ -5,6 +5,45 @@
 
 export const toolsConfig = {
   // ===== 课堂互动游戏 =====
+  slingshot: {
+    id: 'slingshot',
+    titleZh: '弹弓大作战',
+    titleEn: 'Slingshot Quiz Battle',
+    descriptionZh: '输入主题或批量导入题目，把A/B选择题变成弹弓射击挑战',
+    descriptionEn: 'Turn A/B quiz questions into a slingshot shooting challenge',
+    category: 'games',
+    subcategory: 'classroom',
+    access: 'free',
+    badge: 'FREE',
+    scenes: ['A/B选择题', '课堂抢答', '动画音效', '词汇复习', '投屏互动'],
+    icon: '🎯'
+  },
+  typing: {
+    id: 'typing',
+    titleZh: '中文输入挑战',
+    titleEn: 'Chinese Typing Challenge',
+    descriptionZh: '老师导入词库，学生根据提示输入中文，限时挑战打字速度',
+    descriptionEn: 'Students type Chinese words from prompts in a timed challenge',
+    category: 'games',
+    subcategory: 'classroom',
+    access: 'limited_free',
+    badge: 'LIMITED_FREE',
+    scenes: ['中文输入', '听写练习', '词汇复习', '个人挑战', '限时挑战'],
+    icon: '⌨️'
+  },
+  snake: {
+    id: 'snake',
+    titleZh: '成语贪吃蛇',
+    titleEn: 'Idiom Snake Game',
+    descriptionZh: '控制小蛇按顺序吃掉汉字，完成成语挑战',
+    descriptionEn: 'Control the snake to collect Chinese characters in order',
+    category: 'games',
+    subcategory: 'classroom',
+    access: 'limited_free',
+    badge: 'LIMITED_FREE',
+    scenes: ['成语复习', '汉字顺序', '词语记忆', '反应训练'],
+    icon: '🐍'
+  },
   gacha: {
     id: 'gacha',
     titleZh: '词语扭蛋机',
