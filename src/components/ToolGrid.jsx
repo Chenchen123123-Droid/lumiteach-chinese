@@ -132,15 +132,15 @@ const toolsData = [
   },
   {
     id: 'guesschar',
-    icon: '🧩',
+    icon: '🔍',
     category: 'games',
-    access: 'pro',
-    title: { zh: '猜字大挑战', en: 'Guess Character Challenge' },
+    access: 'free',
+    title: { zh: '找错别字', en: 'Spot the Typo' },
     description: {
-      zh: '方块遮挡答案，逐步揭晓让学生猜词',
-      en: 'Hidden blocks, gradually reveal to guess'
+      zh: '句子找错别字游戏，老师导入错误句子，学生点击错别字辨析',
+      en: 'Find typos in sentences - a Chinese typo detection game for classrooms'
     },
-    tags: { zh: ['课堂互动', '抢答游戏'], en: ['Classroom', 'Quiz'] }
+    tags: { zh: ['错别字', '课堂互动', '阅读纠错'], en: ['Typo', 'Classroom', 'Reading'] }
   },
   {
     id: 'luckybox',

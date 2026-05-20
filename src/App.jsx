@@ -13,7 +13,7 @@ import SentenceOrderGame from './components/SentenceOrderGame';
 import WordMatchingGame from './components/WordMatchingGame';
 import TeachingGomokuGame from './components/TeachingGomokuGame';
 import WordGachaGame from './components/WordGachaGame';
-import GuessCharacterChallenge from './components/GuessCharacterChallenge';
+import SpotTheTypo from './components/SpotTheTypo';
 import PinyinWheelGame from './components/PinyinWheelGame';
 import PinyinGuessHanZiGame from './components/PinyinGuessHanZiGame';
 import LuckyWordBoxGame from './components/LuckyWordBoxGame';
@@ -191,7 +191,7 @@ function AppContent() {
       case 'gacha':
         return <WordGachaGame />;
       case 'guesschar':
-        return <GuessCharacterChallenge />;
+        return <SpotTheTypo />;
       case 'pinyinwheel':
         return <PinyinWheelGame />;
       case 'pinyinguess':
