@@ -217,6 +217,18 @@ const toolsData = [
     tags: { zh: ['卡牌游戏', '词汇练习', 'PDF'], en: ['Cards', 'Practice', 'PDF'] }
   },
   {
+    id: 'readingaudio',
+    icon: '🔊',
+    category: 'tools',
+    access: 'free',
+    title: { zh: '课堂朗读音频工具', en: 'Classroom Reading Audio Tool' },
+    description: {
+      zh: '输入听力文本，一键变成课堂朗读播放器，适合听力练习和跟读训练',
+      en: 'Turn text into a classroom reading player for listening practice and repetition drills'
+    },
+    tags: { zh: ['听力练习', '跟读训练', '朗读'], en: ['Listening', 'Repetition', 'Audio'] }
+  },
+  {
     id: 'wordcloud',
     icon: '☁️',
     category: 'tools',
