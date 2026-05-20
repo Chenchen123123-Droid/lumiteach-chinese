@@ -229,6 +229,18 @@ const toolsData = [
     tags: { zh: ['听力练习', '跟读训练', '朗读'], en: ['Listening', 'Repetition', 'Audio'] }
   },
   {
+    id: 'fliptiles',
+    icon: '🎁',
+    category: 'games',
+    access: 'free',
+    title: { zh: '翻格子', en: 'Flip Tiles Quiz' },
+    description: {
+      zh: '课堂分组翻牌答题游戏，录入题目、设置分值，学生选择格子答题，适合词汇、语法和复习活动',
+      en: 'A team-based tile-flipping quiz game for vocabulary, grammar, and classroom review'
+    },
+    tags: { zh: ['分组游戏', '课堂互动', '复习答题'], en: ['Team Game', 'Classroom', 'Review Quiz'] }
+  },
+  {
     id: 'wordcloud',
     icon: '☁️',
     category: 'tools',
