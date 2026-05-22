@@ -149,6 +149,13 @@ function AppContent() {
   };
 
   const handleNavigate = (sectionId) => {
+    // Exit game mode when navigating away
+    if (isGenerating) {
+      setIsGenerating(false);
+      setIsFullscreen(false);
+      setSelectedGame(null);
+    }
+
     if (sectionId === 'tools' || sectionId === 'all-tools') {
       setView('tools');
     } else if (sectionId === 'pricing') {
@@ -157,7 +164,7 @@ function AppContent() {
       setView('ai');
     } else if (sectionId === 'contact') {
       setView('contact');
-    } else {
+    } else if (sectionId === 'home') {
       setView('home');
     }
   };
@@ -283,53 +290,61 @@ function AppContent() {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="footer">
-        <div className="footer-main">
-          <div className="footer-brand-section">
-            <span className="footer-icon">📚</span>
-            <div className="footer-brand-text">
-              <span className="footer-text">HanClass</span>
-              <span className="footer-subtitle">
-                {lang === 'zh' ? '中文课堂工具箱' : 'Chinese Class Toolkit'}
-              </span>
+      {/* Footer - Hide on tool/game pages */}
+      {!isGenerating && (
+        <footer className="footer">
+          <div className="footer-main">
+            <div className="footer-brand-section">
+              <span className="footer-icon">📚</span>
+              <div className="footer-brand-text">
+                <span className="footer-text">HanClass</span>
+                <span className="footer-subtitle">
+                  {lang === 'zh' ? '中文课堂工具箱' : 'Chinese Class Toolkit'}
+                </span>
+              </div>
+            </div>
+
+            <div className="footer-nav">
+              <div className="footer-nav-group">
+                <a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('home'); }}>
+                  {lang === 'zh' ? '首页' : 'Home'}
+                </a>
+                <a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('tools'); }}>
+                  {lang === 'zh' ? '全部工具' : 'Tools'}
+                </a>
+                <a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('pricing'); }}>
+                  {lang === 'zh' ? '价格方案' : 'Pricing'}
+                </a>
+                <a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('ai'); }}>
+                  {lang === 'zh' ? 'AI备课' : 'AI Prep'}
+                </a>
+                <a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('contact'); }}>
+                  {lang === 'zh' ? '联系' : 'Contact'}
+                </a>
+              </div>
+            </div>
+
+            <div className="footer-contact">
+              <span className="footer-contact-label">{lang === 'zh' ? '联系我们' : 'Contact'}</span>
+              <div className="contact-items">
+                <a href="mailto:2654450145@qq.com">
+                  <span className="contact-label">QQ：</span>2654450145@qq.com
+                </a>
+                <a href="mailto:yy2068184@gmail.com">
+                  <span className="contact-label">Gmail：</span>yy2068184@gmail.com
+                </a>
+              </div>
             </div>
           </div>
 
-          <div className="footer-nav">
-            <div className="footer-nav-group">
-              <a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('home'); }}>
-                {lang === 'zh' ? '首页' : 'Home'}
-              </a>
-              <a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('tools'); }}>
-                {lang === 'zh' ? '全部工具' : 'Tools'}
-              </a>
-              <a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('pricing'); }}>
-                {lang === 'zh' ? '价格方案' : 'Pricing'}
-              </a>
-              <a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('ai'); }}>
-                {lang === 'zh' ? 'AI备课' : 'AI Prep'}
-              </a>
-              <a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('contact'); }}>
-                {lang === 'zh' ? '联系' : 'Contact'}
-              </a>
-            </div>
+          <div className="footer-bottom">
+            <span>© 2026 HanClass. {lang === 'zh' ? 'All rights reserved.' : 'All rights reserved.'}</span>
+            <span className="footer-tagline">
+              {lang === 'zh' ? '让中文课堂更有趣，也让备课更简单' : 'Make Chinese classes more engaging and lesson prep easier'}
+            </span>
           </div>
-
-          <div className="footer-contact">
-            <span className="footer-contact-label">{lang === 'zh' ? '联系我们' : 'Contact'}</span>
-            <a href="mailto:2654450145@qq.com">2654450145@qq.com</a>
-            <a href="mailto:yy2068184@gmail.com">yy2068184@gmail.com</a>
-          </div>
-        </div>
-
-        <div className="footer-bottom">
-          <span>© 2026 HanClass. {lang === 'zh' ? 'All rights reserved.' : 'All rights reserved.'}</span>
-          <span className="footer-tagline">
-            {lang === 'zh' ? '让中文课堂更有趣，也让备课更简单' : 'Make Chinese classes more engaging and lesson prep easier'}
-          </span>
-        </div>
-      </footer>
+        </footer>
+      )}
 
       {/* Upgrade Modal */}
       <UpgradeModal

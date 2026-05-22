@@ -2,9 +2,13 @@
 
 /* ===== 设置页 ===== */
 .typing-setup {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 24px;
+  padding: 32px 24px;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 32px;
+  align-items: start;
 }
 
 .setup-header {
@@ -30,21 +34,22 @@
   gap: 24px;
 }
 
-.input-section {
+/* 左侧大卡片 */
+.word-library-section {
   background: white;
   border-radius: 16px;
-  padding: 24px;
+  padding: 28px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
-.input-section h3 {
+.word-library-section h3 {
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--color-text, #111827);
   margin-bottom: 12px;
 }
 
-.input-section textarea {
+.word-library-section textarea {
   width: 100%;
   padding: 12px;
   border: 1px solid var(--color-border, #e5e7eb);
@@ -52,7 +57,25 @@
   font-size: 0.95rem;
   font-family: inherit;
   resize: vertical;
-  min-height: 150px;
+  min-height: 280px;
+}
+
+/* 右侧设置卡片 */
+.settings-section {
+  background: white;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.settings-section h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text, #111827);
+  margin-bottom: 8px;
 }
 
 .input-section textarea:focus {

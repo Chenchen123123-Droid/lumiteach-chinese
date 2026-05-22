@@ -83,9 +83,14 @@
   box-shadow: var(--shadow-md);
 }
 
-/* 游戏区域 */
+/* 游戏区域 - 扩大布局适合大屏投屏 */
 .game-section {
-  padding: 20px;
+  padding: 24px;
+  min-height: calc(100vh - 64px);
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .game-header-controls {
@@ -209,14 +214,25 @@
   margin-bottom: 4px;
 }
 
-.footer-contact a {
+.contact-items {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contact-items a {
   color: #6E6E73;
   text-decoration: none;
   font-size: 0.85rem;
   transition: color 0.2s;
 }
 
-.footer-contact a:hover {
+.contact-items a:hover {
+  color: #1D1D1F;
+}
+
+.contact-label {
+  font-weight: 500;
   color: #1D1D1F;
 }
 
