@@ -19,12 +19,12 @@ function HomePage({ onSelectTool, onNavigate }) {
   const featuredTools = [
     { icon: '⛰️', name: isZh ? '爬山竞赛' : 'Climb the Mountain' },
     { icon: '🧩', name: isZh ? '双字词拼图' : 'Word Puzzle' },
-    { icon: '🎡', name: isZh ? '拼音大转盘' : 'Pinyin Wheel' },
     { icon: '🎯', name: isZh ? '弹弓大作战' : 'Slingshot Quiz' },
     { icon: '📝', name: isZh ? '汉字字帖' : 'Hanzi Worksheets' },
     { icon: '🎧', name: isZh ? '课堂朗读' : 'Reading Audio' },
     { icon: '☁️', name: isZh ? '词云生成器' : 'Word Cloud' },
     { icon: '🎲', name: isZh ? '点名神器' : 'Lucky Picker' },
+    { icon: '🎁', name: isZh ? '翻格子' : 'Flip Tiles' },
   ];
 
   return (

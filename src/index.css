@@ -20,22 +20,22 @@
   --error-color: #EF4444;
   --error-light: #FEE2E2;
 
-  /* 中性色 */
-  --color-bg: #F7F8FC;
+  /* Apple 风格中性色 */
+  --color-bg: #F5F5F7;
   --color-surface: #FFFFFF;
-  --color-text: #111827;
-  --color-muted: #6B7280;
+  --color-text: #1D1D1F;
+  --color-muted: #6E6E73;
   --color-border: #E5E7EB;
 
   /* 备用兼容 */
   --primary-color: #5B5CFF;
   --primary-hover: #4338CA;
   --primary-light: #EEF2FF;
-  --bg-color: #F7F8FC;
+  --bg-color: #F5F5F7;
   --card-bg: #FFFFFF;
-  --text-primary: #111827;
-  --text-secondary: #6B7280;
-  --text-light: #9CA3AF;
+  --text-primary: #1D1D1F;
+  --text-secondary: #6E6E73;
+  --text-light: #86868B;
   --border-color: #E5E7EB;
 
   /* 字体 */

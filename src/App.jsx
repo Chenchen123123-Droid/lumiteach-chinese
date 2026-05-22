@@ -14,7 +14,6 @@ import WordMatchingGame from './components/WordMatchingGame';
 import TeachingGomokuGame from './components/TeachingGomokuGame';
 import WordGachaGame from './components/WordGachaGame';
 import SpotTheTypo from './components/SpotTheTypo';
-import PinyinWheelGame from './components/PinyinWheelGame';
 import PinyinGuessHanZiGame from './components/PinyinGuessHanZiGame';
 import LuckyWordBoxGame from './components/LuckyWordBoxGame';
 import WordMinesweeperGame from './components/WordMinesweeperGame';
@@ -72,14 +71,13 @@ function AppContent() {
     wordcloud: 'free',
     spotit: 'free',
     gacha: 'free',
-    pinyinwheel: 'free',
     pinyinguess: 'free',
     luckypicker: 'free',
     twopuzzle: 'free',
     climbmountain: 'free'
   };
 
-  const noTextRequired = ['slingshot', 'typing', 'snake', 'gomoku', 'gacha', 'guesschar', 'pinyinwheel', 'pinyinguess', 'luckybox', 'minesweeper', 'worksheet', 'luckypicker', 'seatmanager', 'hanzicomponent', 'chineseuno', 'wordcloud', 'spotit', 'matching', 'readingaudio', 'fliptiles', 'twopuzzle', 'climbmountain'];
+  const noTextRequired = ['slingshot', 'typing', 'snake', 'gomoku', 'gacha', 'guesschar', 'pinyinguess', 'luckybox', 'minesweeper', 'worksheet', 'luckypicker', 'seatmanager', 'hanzicomponent', 'chineseuno', 'wordcloud', 'spotit', 'matching', 'readingaudio', 'fliptiles', 'twopuzzle', 'climbmountain'];
 
   const handleGenerate = () => {
     // 预览模式下，所有工具都可以直接生成
@@ -199,8 +197,6 @@ function AppContent() {
         return <WordGachaGame />;
       case 'guesschar':
         return <SpotTheTypo />;
-      case 'pinyinwheel':
-        return <PinyinWheelGame />;
       case 'pinyinguess':
         return <PinyinGuessHanZiGame />;
       case 'luckybox':

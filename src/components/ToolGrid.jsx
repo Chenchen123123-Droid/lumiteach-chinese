@@ -59,18 +59,6 @@ const toolsData = [
     tags: { zh: ['课堂热身', '词汇复习', '随机'], en: ['Warm-up', 'Review', 'Random'] }
   },
   {
-    id: 'pinyinwheel',
-    icon: '🎡',
-    category: 'games',
-    access: 'free',
-    title: { zh: '拼音大转盘', en: 'Pinyin Wheel' },
-    description: {
-      zh: '随机生成声母、韵母和声调组合，支持拼音朗读',
-      en: 'Random pinyin combinations with audio'
-    },
-    tags: { zh: ['拼音练习', '发音训练', '随机'], en: ['Pinyin', 'Pronunciation', 'Random'] }
-  },
-  {
     id: 'pinyinguess',
     icon: '🔤',
     category: 'games',

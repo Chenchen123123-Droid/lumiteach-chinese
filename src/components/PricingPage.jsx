@@ -1,103 +1,59 @@
 import React from 'react';
-import { subscriptionPlans } from '../config/subscriptionPlans';
-import { isPreviewMode } from '../config/accessMode';
-import { useToast } from '../context/ToastContext';
 import './PricingPage.css';
 
 /**
- * 价格方案页面
- * 展示 Free / Pro / School 三档会员
+ * 价格方案页面 - Free Beta 版本
  */
-function PricingPage({ lang = 'zh', onSelectPlan }) {
-  const plans = Object.values(subscriptionPlans);
-  const { showInfo } = useToast();
-
-  const handlePlanClick = (planId) => {
-    // 如果是Free计划，直接返回
-    if (planId === 'free') return;
-
-    // 显示提示信息
-    const message = isPreviewMode
-      ? (lang === 'zh'
-          ? '会员系统即将开放，目前可联系人工开通。'
-          : 'Membership is coming soon. Manual access is available by contact.')
-      : (lang === 'zh'
-          ? '订阅功能即将开放，当前为前端演示版本。'
-          : 'Subscription is coming soon. This is a front-end demo for now.');
-
-    showInfo(message);
-  };
+function PricingPage({ lang = 'zh', onNavigate }) {
 
   return (
     <div className="pricing-page">
       <div className="pricing-header">
         <h1 className="pricing-title">
-          {lang === 'zh' ? '价格方案' : 'Pricing'}
+          {lang === 'zh' ? '会员系统即将开放' : 'Membership is Coming Soon'}
         </h1>
         <p className="pricing-subtitle">
           {lang === 'zh'
-            ? '选择适合你的中文课堂工具方案'
-            : 'Choose the best plan for your Chinese classroom'}
+            ? 'HanClass 目前处于 Free Beta 公测阶段，所有工具暂时免费体验。'
+            : 'HanClass is currently in Free Beta. All tools are free to try for now.'}
         </p>
-
-        {isPreviewMode && (
-          <p className="preview-notice">
-            {lang === 'zh'
-              ? '🎉 当前为公开体验版，所有工具暂时免费开放'
-              : '🎉 Public Preview: All tools are currently available'}
-          </p>
-        )}
       </div>
 
-      <div className="pricing-cards">
-        {plans.map((plan) => (
-          <div
-            key={plan.id}
-            className={`pricing-card ${plan.recommended ? 'recommended' : ''}`}
-          >
-            {plan.recommended && (
-              <div className="recommended-badge">
-                {lang === 'zh' ? '推荐' : 'Recommended'}
-              </div>
-            )}
-
-            <div className="plan-header">
-              <h3 className="plan-name">
-                {lang === 'zh' ? plan.nameZh : plan.nameEn}
-              </h3>
-              <div className="plan-price">
-                {lang === 'zh' ? plan.priceZh : plan.priceEn}
-              </div>
-              <p className="plan-description">
-                {lang === 'zh' ? plan.descriptionZh : plan.descriptionEn}
-              </p>
-            </div>
-
-            <ul className="plan-features">
-              {(lang === 'zh' ? plan.featuresZh : plan.featuresEn).map((feature, idx) => (
-                <li key={idx} className="feature-item">
-                  <span className="feature-check">✓</span>
-                  {feature}
-                </li>
-              ))}
-            </ul>
-
-            <button
-              className={`plan-button ${plan.id}`}
-              onClick={() => handlePlanClick(plan.id)}
-            >
-              {lang === 'zh' ? plan.buttonZh : plan.buttonEn}
-            </button>
-          </div>
-        ))}
-      </div>
-
-      <div className="pricing-footer">
+      <div className="free-beta-notice">
+        <h2>🎉 Free Beta</h2>
         <p>
           {lang === 'zh'
-            ? '* 价格可能会根据地区有所不同，实际价格以支付时为准'
-            : '* Prices may vary by region. Actual price at checkout.'}
+            ? '目前所有工具暂时免费开放，欢迎老师试用并反馈。'
+            : 'All tools are currently free to try. Teachers are welcome to provide feedback.'}
         </p>
+      </div>
+
+      <div className="contact-section-pricing">
+        <h3>
+          {lang === 'zh' ? '联系我们' : 'Contact Us'}
+        </h3>
+        <p>
+          {lang === 'zh'
+            ? '如果你有建议、合作需求，或希望了解后续会员计划，欢迎联系：'
+            : 'For feedback, support, collaboration, or future membership plans, contact:'}
+        </p>
+        <div className="contact-emails-pricing">
+          <a href="mailto:2654450145@qq.com">
+            <span>📧</span> 2654450145@qq.com
+          </a>
+          <a href="mailto:yy2068184@gmail.com">
+            <span>📧</span> yy2068184@gmail.com
+          </a>
+        </div>
+      </div>
+
+      <div className="pricing-actions">
+        <button className="btn-contact-pricing" onClick={() => onNavigate && onNavigate('contact')}>
+          {lang === 'zh' ? '联系我' : 'Contact'}
+        </button>
+        <button className="btn-explore-pricing" onClick={() => onNavigate && onNavigate('tools')}>
+          {lang === 'zh' ? '查看全部工具' : 'Explore Tools'}
+        </button>
       </div>
     </div>
   );

@@ -32,7 +32,7 @@ function Navbar({ onNavigate, currentPage = 'home' }) {
 				<div className="navbar-brand">
 					<a href="#" className="brand-link" onClick={(e) => handleNavClick('home', e)}>
 						<span className="brand-icon">📚</span>
-						<span className="brand-text">LumiTeach</span>
+						<span className="brand-text">HanClass</span>
 					</a>
 				</div>
 
@@ -55,6 +55,11 @@ function Navbar({ onNavigate, currentPage = 'home' }) {
 					<li className={`nav-item ${isActive('ai')}`}>
 						<a href="#" onClick={(e) => handleNavClick('ai', e)}>
 							{lang === 'zh' ? 'AI备课' : 'AI Prep'}
+						</a>
+					</li>
+					<li className={`nav-item ${isActive('contact')}`}>
+						<a href="#" onClick={(e) => handleNavClick('contact', e)}>
+							{lang === 'zh' ? '联系' : 'Contact'}
 						</a>
 					</li>
 				</ul>

@@ -1,9 +1,11 @@
-/* ===== 价格方案页面样式 ===== */
+/* 价格方案页面样式 - Free Beta */
 
 .pricing-page {
-  max-width: 1100px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 60px 24px;
+  background: #F5F5F7;
+  min-height: calc(100vh - 200px);
 }
 
 .pricing-header {
@@ -14,192 +16,138 @@
 .pricing-title {
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: #1D1D1F;
   margin-bottom: 12px;
 }
 
 .pricing-subtitle {
-  font-size: 1.1rem;
-  color: var(--text-secondary);
+  font-size: 1.15rem;
+  color: #6E6E73;
 }
 
-.pricing-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-bottom: 40px;
-}
-
-/* 价格卡片 */
-.pricing-card {
-  background: var(--card-bg);
-  border-radius: 16px;
-  padding: 32px 24px;
-  box-shadow: var(--shadow-md);
-  border: 2px solid var(--border-color);
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.pricing-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-}
-
-/* 推荐卡片 */
-.pricing-card.recommended {
-  border-color: #667eea;
-  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.2);
-}
-
-.pricing-card.recommended:hover {
-  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.3);
-}
-
-.recommended-badge {
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: white;
-  padding: 6px 20px;
+.free-beta-notice {
+  background: linear-gradient(135deg, #E8F5E9 0%, #E3F2FD 100%);
   border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  white-space: nowrap;
+  padding: 40px;
+  text-align: center;
+  margin-bottom: 32px;
 }
 
-/* 方案头部 */
-.plan-header {
+.free-beta-notice h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1D1D1F;
+  margin-bottom: 12px;
+}
+
+.free-beta-notice p {
+  font-size: 1.1rem;
+  color: #6E6E73;
+  line-height: 1.6;
+}
+
+.contact-section-pricing {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
   text-align: center;
+  margin-bottom: 32px;
+}
+
+.contact-section-pricing h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1D1D1F;
+  margin-bottom: 12px;
+}
+
+.contact-section-pricing > p {
+  color: #6E6E73;
   margin-bottom: 24px;
 }
 
-.plan-name {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 8px;
-}
-
-.plan-price {
-  font-size: 2.25rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 8px;
-}
-
-.plan-description {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  line-height: 1.4;
-}
-
-/* 功能列表 */
-.plan-features {
-  flex: 1;
-  list-style: none;
-  padding: 0;
-  margin: 0 0 24px 0;
-}
-
-.feature-item {
+.contact-emails-pricing {
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.contact-emails-pricing a {
+  display: flex;
+  align-items: center;
   gap: 10px;
-  padding: 10px 0;
-  font-size: 0.95rem;
-  color: var(--text-primary);
-  border-bottom: 1px solid var(--border-color);
-}
-
-.feature-item:last-child {
-  border-bottom: none;
-}
-
-.feature-check {
-  color: #4CAF50;
-  font-weight: bold;
-  flex-shrink: 0;
-}
-
-/* 按钮 */
-.plan-button {
-  width: 100%;
   padding: 14px 24px;
-  border-radius: 8px;
+  background: #F5F5F7;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #1D1D1F;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.contact-emails-pricing a:hover {
+  background: #E8E8ED;
+}
+
+.pricing-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.btn-contact-pricing {
+  padding: 14px 32px;
+  background: #1D1D1F;
+  color: white;
+  border: none;
+  border-radius: 12px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
-  border: none;
+  transition: all 0.2s;
 }
 
-.plan-button.free {
-  background: var(--bg-color);
-  color: var(--text-secondary);
-  border: 2px solid var(--border-color);
-  cursor: default;
+.btn-contact-pricing:hover {
+  background: #2C2C2E;
 }
 
-.plan-button.pro {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: white;
+.btn-explore-pricing {
+  padding: 14px 32px;
+  background: white;
+  color: #1D1D1F;
+  border: 2px solid #E5E7EB;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
-.plan-button.pro:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+.btn-explore-pricing:hover {
+  border-color: #1D1D1F;
 }
 
-.plan-button.school {
-  background: var(--bg-color);
-  color: var(--text-primary);
-  border: 2px solid var(--border-color);
-}
-
-.plan-button.school:hover {
-  border-color: #667eea;
-  color: #667eea;
-}
-
-/* 页脚 */
-.pricing-footer {
-  text-align: center;
-  color: var(--text-light);
-  font-size: 0.85rem;
-}
-
-/* ===== 响应式 ===== */
-@media (max-width: 900px) {
-  .pricing-cards {
-    grid-template-columns: 1fr;
-    max-width: 400px;
-    margin: 0 auto 40px;
+@media (max-width: 600px) {
+  .pricing-page {
+    padding: 40px 16px;
   }
 
-  .pricing-card.recommended {
-    order: -1;
-  }
-}
-
-@media (max-width: 480px) {
   .pricing-title {
-    font-size: 2rem;
-  }
-
-  .pricing-subtitle {
-    font-size: 1rem;
-  }
-
-  .pricing-card {
-    padding: 24px 16px;
-  }
-
-  .plan-price {
     font-size: 1.75rem;
+  }
+
+  .free-beta-notice,
+  .contact-section-pricing {
+    padding: 24px;
+  }
+
+  .pricing-actions {
+    flex-direction: column;
+  }
+
+  .btn-contact-pricing,
+  .btn-explore-pricing {
+    width: 100%;
   }
 }
