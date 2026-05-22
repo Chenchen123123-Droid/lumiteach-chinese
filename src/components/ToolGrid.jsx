@@ -241,6 +241,30 @@ const toolsData = [
     tags: { zh: ['分组游戏', '课堂互动', '复习答题'], en: ['Team Game', 'Classroom', 'Review Quiz'] }
   },
   {
+    id: 'twopuzzle',
+    icon: '🧩',
+    category: 'games',
+    access: 'free',
+    title: { zh: '双字词拼图', en: 'Two-Character Word Puzzle' },
+    description: {
+      zh: '输入两字词，系统按田字格切成拼图碎片，学生拖拽拼回汉字，适合认字和词语复习',
+      en: 'Turn two-character Chinese words into grid-based puzzles for character recognition and vocabulary review'
+    },
+    tags: { zh: ['汉字认读', '词语复习', '拖拽拼图'], en: ['Hanzi', 'Vocabulary', 'Drag Puzzle'] }
+  },
+  {
+    id: 'climbmountain',
+    icon: '⛰️',
+    category: 'games',
+    access: 'free',
+    title: { zh: '爬山竞赛', en: 'Climb the Mountain Quiz' },
+    description: {
+      zh: '创建课堂答题房间，学生答题后角色沿山路前进，适合词汇、文化和阅读复习',
+      en: 'Create a classroom quiz race where students answer questions and climb toward the mountain top.'
+    },
+    tags: { zh: ['实时互动', '课堂竞赛', 'AI出题'], en: ['Live Quiz', 'Classroom Race', 'AI Questions'] }
+  },
+  {
     id: 'wordcloud',
     icon: '☁️',
     category: 'tools',

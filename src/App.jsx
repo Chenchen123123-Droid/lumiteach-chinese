@@ -32,6 +32,9 @@ import ChineseTypingChallenge from './components/ChineseTypingChallenge';
 import IdiomSnakeGame from './components/IdiomSnakeGame';
 import UpgradeModal from './components/UpgradeModal';
 import PricingPage from './components/PricingPage';
+import ContactPage from './components/ContactPage';
+import TwoCharacterWordPuzzle from './components/TwoCharacterWordPuzzle';
+import ClimbMountainQuiz from './components/ClimbMountainQuiz';
 import './App.css';
 
 /**
@@ -71,10 +74,12 @@ function AppContent() {
     gacha: 'free',
     pinyinwheel: 'free',
     pinyinguess: 'free',
-    luckypicker: 'free'
+    luckypicker: 'free',
+    twopuzzle: 'free',
+    climbmountain: 'free'
   };
 
-  const noTextRequired = ['slingshot', 'typing', 'snake', 'gomoku', 'gacha', 'guesschar', 'pinyinwheel', 'pinyinguess', 'luckybox', 'minesweeper', 'worksheet', 'luckypicker', 'seatmanager', 'hanzicomponent', 'chineseuno', 'wordcloud', 'spotit', 'matching', 'readingaudio', 'fliptiles'];
+  const noTextRequired = ['slingshot', 'typing', 'snake', 'gomoku', 'gacha', 'guesschar', 'pinyinwheel', 'pinyinguess', 'luckybox', 'minesweeper', 'worksheet', 'luckypicker', 'seatmanager', 'hanzicomponent', 'chineseuno', 'wordcloud', 'spotit', 'matching', 'readingaudio', 'fliptiles', 'twopuzzle', 'climbmountain'];
 
   const handleGenerate = () => {
     // 预览模式下，所有工具都可以直接生成
@@ -152,6 +157,8 @@ function AppContent() {
       setShowPricing(true);
     } else if (sectionId === 'ai') {
       setView('ai');
+    } else if (sectionId === 'contact') {
+      setView('contact');
     } else {
       setView('home');
     }
@@ -218,6 +225,10 @@ function AppContent() {
         return <ClassroomReadingAudioTool />;
       case 'fliptiles':
         return <FlipTilesQuiz />;
+      case 'twopuzzle':
+        return <TwoCharacterWordPuzzle />;
+      case 'climbmountain':
+        return <ClimbMountainQuiz />;
       default:
         return null;
     }
@@ -243,7 +254,7 @@ function AppContent() {
           <button className="btn-back" onClick={() => setShowPricing(false)}>
             {lang === 'zh' ? '← 返回首页' : '← Back to Home'}
           </button>
-          <PricingPage lang={lang} onSelectPlan={() => {}} />
+          <PricingPage lang={lang} onNavigate={handleNavigate} />
         </div>
       );
     }
@@ -259,6 +270,8 @@ function AppContent() {
         );
       case 'ai':
         return <AIComingSoon onNavigate={handleNavigate} />;
+      case 'contact':
+        return <ContactPage onNavigate={handleNavigate} />;
       default:
         return <HomePage onSelectTool={handleToolSelect} onNavigate={handleNavigate} />;
     }
@@ -276,16 +289,49 @@ function AppContent() {
 
       {/* Footer */}
       <footer className="footer">
-        <div className="footer-content">
-          <div className="footer-brand">
+        <div className="footer-main">
+          <div className="footer-brand-section">
             <span className="footer-icon">📚</span>
-            <span className="footer-text">LumiTeach</span>
+            <div className="footer-brand-text">
+              <span className="footer-text">HanClass</span>
+              <span className="footer-subtitle">
+                {lang === 'zh' ? '中文课堂工具箱' : 'Chinese Class Toolkit'}
+              </span>
+            </div>
           </div>
-          <div className="footer-links">
-            <span>© 2024 LumiTeach Chinese</span>
-            <span> | </span>
-            <span>{lang === 'zh' ? '让中文课堂更有趣' : 'Make Chinese classes more interactive'}</span>
+
+          <div className="footer-nav">
+            <div className="footer-nav-group">
+              <a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('home'); }}>
+                {lang === 'zh' ? '首页' : 'Home'}
+              </a>
+              <a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('tools'); }}>
+                {lang === 'zh' ? '全部工具' : 'Tools'}
+              </a>
+              <a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('pricing'); }}>
+                {lang === 'zh' ? '价格方案' : 'Pricing'}
+              </a>
+              <a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('ai'); }}>
+                {lang === 'zh' ? 'AI备课' : 'AI Prep'}
+              </a>
+              <a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('contact'); }}>
+                {lang === 'zh' ? '联系' : 'Contact'}
+              </a>
+            </div>
           </div>
+
+          <div className="footer-contact">
+            <span className="footer-contact-label">{lang === 'zh' ? '联系我们' : 'Contact'}</span>
+            <a href="mailto:2654450145@qq.com">2654450145@qq.com</a>
+            <a href="mailto:yy2068184@gmail.com">yy2068184@gmail.com</a>
+          </div>
+        </div>
+
+        <div className="footer-bottom">
+          <span>© 2026 HanClass. {lang === 'zh' ? 'All rights reserved.' : 'All rights reserved.'}</span>
+          <span className="footer-tagline">
+            {lang === 'zh' ? '让中文课堂更有趣，也让备课更简单' : 'Make Chinese classes more engaging and lesson prep easier'}
+          </span>
         </div>
       </footer>
 

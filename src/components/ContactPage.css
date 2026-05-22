@@ -1,0 +1,138 @@
+/* 联系页面样式 */
+
+.contact-page {
+  min-height: calc(100vh - 200px);
+  padding: 60px 24px;
+  background: #F5F5F7;
+}
+
+.contact-container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.contact-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1D1D1F;
+  margin-bottom: 12px;
+}
+
+.contact-subtitle {
+  font-size: 1.1rem;
+  color: #6E6E73;
+}
+
+.contact-section {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  margin-bottom: 24px;
+}
+
+.contact-section h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1D1D1F;
+  margin-bottom: 16px;
+}
+
+.contact-intro {
+  color: #6E6E73;
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.contact-emails {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-email {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: #F5F5F7;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #1D1D1F;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.contact-email:hover {
+  background: #E8E8ED;
+}
+
+.email-icon {
+  font-size: 1.25rem;
+}
+
+.about-text {
+  color: #6E6E73;
+  line-height: 1.7;
+}
+
+.contact-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.btn-primary {
+  padding: 14px 28px;
+  background: #1D1D1F;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  background: #2C2C2E;
+}
+
+.btn-secondary {
+  padding: 14px 28px;
+  background: white;
+  color: #1D1D1F;
+  border: 2px solid #E5E7EB;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  border-color: #1D1D1F;
+}
+
+/* 响应式 */
+@media (max-width: 600px) {
+  .contact-page {
+    padding: 40px 16px;
+  }
+
+  .contact-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .contact-section {
+    padding: 24px;
+  }
+
+  .contact-actions {
+    flex-direction: column;
+  }
+}
