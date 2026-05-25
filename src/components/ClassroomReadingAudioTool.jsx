@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 import { useToast } from '../context/ToastContext';
-import './ReadingAudioTool.css';
+import './ClassroomReadingAudioTool.css';
 
 /**
  * 课堂朗读音频工具
@@ -93,7 +93,22 @@ function ClassroomReadingAudioTool() {
     localStorage.setItem('reading-audio-tool', JSON.stringify(data));
   }, [inputText, sentences, mode]);
 
-  // 获取中文/英文语音
+  // 获取中文/英文语音 - 优先选择高质量语音
+  const getPreferredVoice = (targetLang) => {
+    // 尝试获取指定语言的语音
+    const langCode = targetLang === 'zh' ? 'zh' : 'en';
+
+    // 首先尝试找中文-大陆 或 中文(简体)
+    const zhCN = voices.find(v => v.name.includes('Chinese') && v.name.includes('Simplified'));
+    const zhTW = voices.find(v => v.name.includes('Chinese') && v.name.includes('Traditional'));
+
+    if (targetLang === 'zh') {
+      return zhCN || zhTW || voices.find(v => v.lang.toLowerCase().startsWith('zh')) || null;
+    }
+
+    return voices.find(v => v.lang.toLowerCase().startsWith(langCode)) || null;
+  };
+
   const getVoicesByLang = (targetLang) => {
     if (targetLang === 'auto') return voices;
     const langCode = targetLang === 'zh' ? 'zh' : 'en';
@@ -179,19 +194,92 @@ function ClassroomReadingAudioTool() {
     });
   };
 
-  // 试听单句
-  const previewSentence = (sentence) => {
+  // 测试朗读功能
+  const testSound = () => {
+    // 先确保之前的都停掉
     stopSpeech();
 
-    const utterance = new SpeechSynthesisUtterance(sentence.text);
-    const voiceList = getVoicesByLang(sentence.language);
+    // 构建测试文本
+    const testText = lang === 'zh'
+      ? '你好，欢迎使用HanClass课堂朗读工具。'
+      : 'Hello, welcome to HanClass Reading Tool.';
 
-    if (voiceList.length > 0 && sentence.voiceIndex < voiceList.length) {
-      utterance.voice = voiceList[sentence.voiceIndex];
+    const utterance = new SpeechSynthesisUtterance(testText);
+
+    // 优先选择中文语音
+    const preferredVoice = getPreferredVoice(lang);
+    if (preferredVoice) {
+      utterance.voice = preferredVoice;
+      utterance.lang = preferredVoice.lang;
+    }
+
+    utterance.rate = 1;
+    utterance.volume = 1;
+
+    // 错误处理
+    utterance.onstart = () => {
+      console.log('TTS started');
+    };
+
+    utterance.onerror = (event) => {
+      console.error('TTS error:', event.error);
+      setIsPlaying(false);
+      showError(lang === 'zh'
+        ? `朗读出错：${event.error}`
+        : `TTS error: ${event.error}`);
+    };
+
+    utterance.onend = () => {
+      setIsPlaying(false);
+    };
+
+    // 确保开始朗读
+    setIsPlaying(true);
+    synthRef.current.speak(utterance);
+  };
+
+  // 试听单句
+  const previewSentence = (sentence) => {
+    // 先确保之前的都停掉
+    stopSpeech();
+
+    if (!sentence.text.trim()) {
+      showError(lang === 'zh' ? '请输入朗读内容' : 'Please input text');
+      return;
+    }
+
+    const utterance = new SpeechSynthesisUtterance(sentence.text);
+
+    // 使用智能语音选择
+    const targetLang = sentence.language === 'auto' ? lang : sentence.language;
+    const preferredVoice = getPreferredVoice(targetLang);
+    if (preferredVoice) {
+      utterance.voice = preferredVoice;
+      utterance.lang = preferredVoice.lang;
     }
 
     utterance.rate = sentence.rate;
+    utterance.volume = 1;
 
+    // 错误处理
+    utterance.onstart = () => {
+      setIsPlaying(true);
+    };
+
+    utterance.onerror = (event) => {
+      console.error('TTS error:', event.error);
+      setIsPlaying(false);
+      showError(lang === 'zh'
+        ? `朗读出错：${event.error}`
+        : `TTS error: ${event.error}`);
+    };
+
+    utterance.onend = () => {
+      setIsPlaying(false);
+    };
+
+    // 开始朗读
+    setIsPlaying(true);
     synthRef.current.speak(utterance);
   };
 
@@ -199,6 +287,12 @@ function ClassroomReadingAudioTool() {
   const playAll = async () => {
     if (sentences.length === 0) {
       showError(lang === 'zh' ? '没有可朗读的内容' : 'No content to read');
+      return;
+    }
+
+    // 检查是否有可用语音
+    if (voices.length === 0) {
+      showError(lang === 'zh' ? '正在加载语音，请稍等片刻再试...' : 'Loading voices, please wait...');
       return;
     }
 
@@ -216,7 +310,8 @@ function ClassroomReadingAudioTool() {
         return;
       }
 
-      if (!isPlaying || !synthRef.current) {
+      // 检查是否停止了
+      if (!synthRef.current) {
         setIsGenerating(false);
         return;
       }
@@ -226,19 +321,29 @@ function ClassroomReadingAudioTool() {
 
       // 朗读多次
       for (let r = 0; r < sentence.repeat; r++) {
-        if (!isPlaying || !synthRef.current) {
+        // 检查是否停止了
+        if (!synthRef.current) {
           setIsGenerating(false);
           return;
         }
 
         const utterance = new SpeechSynthesisUtterance(sentence.text);
-        const voiceList = getVoicesByLang(sentence.language);
 
-        if (voiceList.length > 0 && sentence.voiceIndex < voiceList.length) {
-          utterance.voice = voiceList[sentence.voiceIndex];
+        // 使用智能语音选择
+        const targetLang = sentence.language === 'auto' ? lang : sentence.language;
+        const preferredVoice = getPreferredVoice(targetLang);
+        if (preferredVoice) {
+          utterance.voice = preferredVoice;
+          utterance.lang = preferredVoice.lang;
         }
 
         utterance.rate = sentence.rate;
+        utterance.volume = 1;
+
+        // 错误处理
+        utterance.onerror = (event) => {
+          console.error('TTS error:', event.error);
+        };
 
         await new Promise((resolve) => {
           utterance.onend = resolve;
@@ -252,7 +357,8 @@ function ClassroomReadingAudioTool() {
         await new Promise(resolve => setTimeout(resolve, sentence.pauseAfter * 1000));
       }
 
-      if (isPlaying) {
+      // 继续下一句（只在手动停止时才停止）
+      if (synthRef.current) {
         playSentence(index + 1);
       } else {
         setIsGenerating(false);
@@ -525,6 +631,9 @@ function ClassroomReadingAudioTool() {
             </div>
 
             <div className="playback-buttons">
+              <button className="test-btn" onClick={testSound}>
+                {lang === 'zh' ? '测试声音' : 'Test Sound'}
+              </button>
               {!isPlaying ? (
                 <button className="play-btn primary" onClick={playAll}>
                   {lang === 'zh' ? '开始朗读' : 'Start Reading'}

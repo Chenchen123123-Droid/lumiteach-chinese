@@ -220,7 +220,8 @@
   gap: 6px;
 }
 
-.contact-items a {
+.contact-items a,
+.contact-item {
   color: #6E6E73;
   text-decoration: none;
   font-size: 0.85rem;

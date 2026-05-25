@@ -397,6 +397,23 @@
   color: #DC2626;
 }
 
+.test-btn {
+  padding: 14px 24px;
+  background: white;
+  color: #5B5CFF;
+  border: 2px solid #5B5CFF;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.test-btn:hover {
+  background: #EEF2FF;
+  transform: translateY(-2px);
+}
+
 /* MP3 提示 */
 .mp3-notice {
   display: flex;

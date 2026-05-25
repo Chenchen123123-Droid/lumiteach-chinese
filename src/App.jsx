@@ -325,7 +325,7 @@ function AppContent() {
             </div>
 
             <div className="footer-contact">
-              <span className="footer-contact-label">{lang === 'zh' ? '联系我们' : 'Contact'}</span>
+              <span className="footer-contact-label">{lang === 'zh' ? '联系方式' : 'Contact'}</span>
               <div className="contact-items">
                 <a href="mailto:2654450145@qq.com">
                   <span className="contact-label">QQ：</span>2654450145@qq.com
@@ -333,6 +333,9 @@ function AppContent() {
                 <a href="mailto:yy2068184@gmail.com">
                   <span className="contact-label">Gmail：</span>yy2068184@gmail.com
                 </a>
+                <span className="contact-item">
+                  <span className="contact-label">小红书：</span>对外汉语备课实验室
+                </span>
               </div>
             </div>
           </div>
