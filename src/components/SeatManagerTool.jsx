@@ -177,19 +177,22 @@ function SeatManagerTool() {
 
   // Load classes from localStorage
   const loadClasses = useCallback(() => {
+    let savedData = null;
+
     try {
       const saved = localStorage.getItem(SEAT_CLASSES_KEY);
       if (saved) {
-        const data = JSON.parse(saved);
-        setClasses(data.classes || []);
-        setActiveClassId(data.activeClassId || null);
+        savedData = JSON.parse(saved);
+        setClasses(savedData.classes || []);
+        setActiveClassId(savedData.activeClassId || null);
       }
     } catch (e) {
       console.error('Error loading classes:', e);
+      savedData = null;
     }
 
     // Create default class if none exists
-    if (!saved || !JSON.parse(saved).classes?.length) {
+    if (!savedData?.classes?.length) {
       const defaultClass = {
         id: 'class_' + Date.now(),
         name: lang === 'en' ? 'Default Class' : '默认班级',

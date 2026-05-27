@@ -122,6 +122,9 @@ function AppContent() {
   };
 
   const handleGameSelect = (gameId) => {
+    // 保存当前滚动位置，用于返回时恢复
+    sessionStorage.setItem('toolsScrollY', String(window.scrollY));
+
     // 设置选中的游戏
     setSelectedGame(gameId);
 
@@ -179,9 +182,19 @@ function AppContent() {
   };
 
   const handleBack = () => {
+    // 恢复滚动位置
+    const savedY = sessionStorage.getItem('toolsScrollY');
     setIsGenerating(false);
     setIsFullscreen(false);
     setSelectedGame(null);
+
+    // 延迟恢复滚动位置，确保页面渲染完成
+    if (savedY) {
+      setTimeout(() => {
+        window.scrollTo(0, Number(savedY));
+        sessionStorage.removeItem('toolsScrollY');
+      }, 100);
+    }
   };
 
   const renderTool = () => {

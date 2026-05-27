@@ -122,11 +122,13 @@
 .setup-actions {
   display: flex;
   gap: 12px;
+  width: 100%;
 }
 
 .btn-start {
   flex: 1;
-  padding: 14px 24px;
+  min-height: 44px;
+  padding: 12px 24px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
@@ -135,6 +137,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
+  white-space: nowrap;
 }
 
 .btn-start:hover {
