@@ -1,0 +1,128 @@
+/* AI备课即将上线页面样式 */
+.ai-coming-soon {
+  min-height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  background: #F7F8FA;
+}
+
+.coming-soon-card {
+  background: white;
+  border-radius: 24px;
+  padding: 48px;
+  max-width: 560px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+.coming-soon-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+
+.coming-soon-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.coming-soon-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 12px 0;
+}
+
+.coming-soon-subtitle {
+  font-size: 1.1rem;
+  color: #6B7280;
+  margin: 0 0 32px 0;
+  line-height: 1.6;
+}
+
+.coming-soon-features {
+  background: #F7F8FC;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.coming-soon-features h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 16px 0;
+}
+
+.coming-soon-features ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.coming-soon-features li {
+  font-size: 0.9rem;
+  color: #6B7280;
+  padding: 6px 0;
+  padding-left: 20px;
+  position: relative;
+}
+
+.coming-soon-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #22C55E;
+  font-weight: 600;
+}
+
+.coming-soon-notice {
+  font-size: 0.9rem;
+  color: #6B7280;
+  margin: 0 0 24px 0;
+  padding: 16px;
+  background: #FEF3C7;
+  border-radius: 12px;
+  color: #92400E;
+}
+
+.coming-soon-btn {
+  padding: 14px 32px;
+  background: #5B5CFF;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.coming-soon-btn:hover {
+  background: #4338CA;
+  transform: translateY(-2px);
+}
+
+/* 响应式 */
+@media (max-width: 600px) {
+  .coming-soon-card {
+    padding: 32px 20px;
+  }
+
+  .coming-soon-title {
+    font-size: 1.5rem;
+  }
+
+  .coming-soon-icon {
+    font-size: 3rem;
+  }
+}

@@ -1,0 +1,243 @@
+/* 句子排序游戏样式 */
+.sentence-game {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: var(--shadow-lg);
+}
+
+.sentence-game.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  border-radius: 0;
+  padding: 40px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.game-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.btn-fullscreen {
+  padding: 10px 20px;
+  background: var(--primary-color);
+  color: white;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-fullscreen:hover {
+  background: var(--primary-hover);
+}
+
+.game-instruction {
+  text-align: center;
+  margin-bottom: 32px;
+  padding: 16px;
+  background: var(--primary-light);
+  border-radius: var(--radius-md);
+}
+
+.game-instruction p {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 32px;
+  min-height: 100px;
+}
+
+.word-card {
+  background: var(--bg-color);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px 24px;
+  cursor: grab;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 80px;
+  user-select: none;
+}
+
+.word-card:hover {
+  border-color: var(--primary-color);
+  background: var(--primary-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.word-card:active {
+  cursor: grabbing;
+}
+
+.word-card.correct-position {
+  background: var(--success-light);
+  border-color: var(--success-color);
+}
+
+.word-card.show-answer {
+  cursor: default;
+}
+
+.card-number {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  background: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-text {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.fullscreen .card-text {
+  font-size: 1.75rem;
+}
+
+.feedback-message {
+  text-align: center;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  margin-bottom: 24px;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.feedback-message.correct {
+  background: var(--success-light);
+  color: var(--success-color);
+}
+
+.feedback-message.wrong {
+  background: var(--error-light);
+  color: var(--error-color);
+}
+
+.game-controls {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.btn-control {
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 500;
+  min-width: 120px;
+}
+
+.btn-check {
+  background: var(--primary-color);
+  color: white;
+}
+
+.btn-check:hover:not(:disabled) {
+  background: var(--primary-hover);
+}
+
+.btn-answer {
+  background: var(--warning-light);
+  color: var(--warning-color);
+  border: 2px solid var(--warning-color);
+}
+
+.btn-answer:hover:not(:disabled) {
+  background: var(--warning-color);
+  color: white;
+}
+
+.btn-reshuffle {
+  background: var(--bg-color);
+  color: var(--text-primary);
+  border: 2px solid var(--border-color);
+}
+
+.btn-reshuffle:hover {
+  background: var(--primary-light);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.game-tips {
+  background: var(--primary-light);
+  padding: 16px;
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.game-tips p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .sentence-game {
+    padding: 20px;
+  }
+
+  .game-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .cards-container {
+    gap: 12px;
+  }
+
+  .word-card {
+    padding: 12px 16px;
+    min-width: 60px;
+  }
+
+  .card-text {
+    font-size: 1rem;
+  }
+
+  .game-controls {
+    flex-direction: column;
+  }
+
+  .btn-control {
+    width: 100%;
+  }
+}

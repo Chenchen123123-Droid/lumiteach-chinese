@@ -1,0 +1,480 @@
+/* 主应用样式 - SaaS Professional */
+
+:root {
+  --color-primary: #0F766E;
+  --color-primary-dark: #0A625C;
+  --color-accent: #E9B44C;
+  --color-bg: #F7F5EF;
+  --color-surface: #FFFFFF;
+  --color-text: #14243A;
+  --color-muted: #687789;
+  --color-border: #DFE4DF;
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 8px;
+  --shadow-soft: 0 20px 60px rgba(15, 23, 42, 0.08);
+  --shadow-md: 0 8px 30px rgba(15, 23, 42, 0.06);
+}
+
+.tool-loading,
+.tool-error-state,
+.text-tool-setup {
+  width: min(100%, 960px);
+  margin: 32px auto;
+}
+
+.tool-loading,
+.tool-error-state {
+  padding: 48px 24px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  text-align: center;
+}
+
+.text-tool-setup-card {
+  width: min(100%, 720px);
+  margin: 0 auto;
+  padding: 36px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-md);
+}
+
+.text-tool-icon {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 2rem;
+}
+
+.text-tool-setup-card h1 {
+  margin: 0 0 10px;
+}
+
+.text-tool-setup-card p {
+  margin: 0 0 28px;
+  color: var(--color-muted);
+}
+
+.text-tool-setup-card label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.text-tool-setup-card textarea {
+  width: 100%;
+  min-height: 180px;
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: #fafafa;
+  color: var(--color-text);
+  font: inherit;
+  line-height: 1.7;
+  resize: vertical;
+}
+
+.text-tool-setup-card textarea:focus {
+  outline: 3px solid rgba(91, 92, 255, 0.16);
+  border-color: var(--color-primary);
+}
+
+.text-tool-setup-actions,
+.game-header-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.text-tool-setup-actions {
+  margin-top: 20px;
+}
+
+.text-tool-setup-actions button {
+  min-height: 46px;
+  padding: 0 22px;
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+.text-tool-setup-actions .btn-primary {
+  border: 0;
+  background: var(--color-primary);
+  color: white;
+}
+
+.text-tool-setup-actions .btn-secondary {
+  border: 1px solid var(--color-border);
+  background: white;
+  color: var(--color-text);
+}
+
+.text-tool-setup-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+@media (max-width: 640px) {
+  .text-tool-setup {
+    margin: 12px auto;
+    padding: 0 12px;
+  }
+
+  .text-tool-setup-card {
+    padding: 24px 18px;
+  }
+
+  .text-tool-setup-actions {
+    flex-direction: column-reverse;
+  }
+
+  .text-tool-setup-actions button {
+    width: 100%;
+  }
+
+  .game-header-actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+}
+
+.main-content {
+  flex: 1;
+  width: 100%;
+}
+
+/* 页面切换动画 */
+.page-transition {
+  animation: page-in 0.18s ease-out;
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 游戏区域 - 扩大布局适合大屏投屏 */
+.game-section {
+  padding: 24px;
+  min-height: calc(100vh - 64px);
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.game-header-controls {
+  margin-bottom: 20px;
+}
+
+.btn-back {
+  padding: 10px 20px;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-back:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* 工具页面 */
+.tools-page {
+  padding: 0 24px 48px;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+  display: block;
+  position: relative;
+}
+
+/* 价格页面 */
+.pricing-page-full {
+  padding: 40px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pricing-page-full .btn-back {
+  margin-bottom: 24px;
+}
+
+/* Footer */
+.footer {
+  background: #F0F2ED;
+  border-top: 1px solid #DDE2DC;
+  padding: 48px 24px 32px;
+}
+
+.footer-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 48px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid #D8DED7;
+}
+
+.footer-brand-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.footer-icon {
+  font-size: 1.5rem;
+}
+
+.footer-brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.footer-text {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #14243A;
+}
+
+.footer-subtitle {
+  font-size: 0.85rem;
+  color: #6E6E73;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+}
+
+.footer-nav-group {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footer-nav-group a {
+  color: #6E6E73;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.footer-nav-group a:hover {
+  color: #0F766E;
+}
+
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-contact-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #14243A;
+  margin-bottom: 4px;
+}
+
+.contact-items {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contact-items a,
+.contact-item {
+  color: #6E6E73;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.2s;
+}
+
+.contact-items a:hover {
+  color: #1D1D1F;
+}
+
+.contact-label {
+  font-weight: 500;
+  color: #1D1D1F;
+}
+
+.footer-bottom {
+  max-width: 1100px;
+  margin: 24px auto 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: #86868B;
+}
+
+.footer-tagline {
+  color: #86868B;
+}
+
+@media (max-width: 768px) {
+  .footer-main {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    text-align: center;
+  }
+
+  .footer-brand-section {
+    justify-content: center;
+  }
+
+  .footer-nav {
+    justify-content: center;
+  }
+
+  .footer-contact {
+    align-items: center;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+}
+
+/* 按钮样式 */
+.btn-generate {
+  padding: 16px 32px;
+  background: linear-gradient(135deg, var(--color-primary), #8b5cf6);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-generate:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(91, 92, 255, 0.3);
+}
+
+.btn-generate:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 输入区域 */
+.input-section {
+  margin-bottom: 40px;
+}
+
+.sample-texts {
+  margin-top: 16px;
+}
+
+.sample-title {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  margin-bottom: 8px;
+}
+
+.sample-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-sample {
+  padding: 8px 16px;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.btn-sample:hover {
+  border-color: var(--color-primary);
+}
+
+/* 选择区域 */
+.selector-section {
+  margin-bottom: 40px;
+}
+
+/* 行动区域 */
+.action-section {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* 价格覆盖层 */
+.pricing-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 20px;
+}
+
+.pricing-page-container {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 1.75rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .hero-badges {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 4px;
+  }
+}

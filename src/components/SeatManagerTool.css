@@ -1,0 +1,746 @@
+/* ===== 座位管理工具 ===== */
+
+.seat-manager-tool {
+  display: flex;
+  gap: 24px;
+  padding: 20px;
+  max-width: 1600px;
+  margin: 0 auto;
+  min-height: calc(100vh - 200px);
+}
+
+/* ===== 左侧设置面板 ===== */
+.seat-manager-sidebar {
+  width: 340px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: calc(100vh - 220px);
+  overflow-y: auto;
+}
+
+.sidebar-section {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-md);
+}
+
+.sidebar-section h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+/* 班级选择 */
+.class-select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  background: var(--bg-color);
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.class-select:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.class-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.class-name-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  background: var(--bg-color);
+  color: var(--text-primary);
+}
+
+.class-name-input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.btn-new-class {
+  width: 100%;
+  padding: 10px;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-new-class:hover {
+  background: var(--primary-hover);
+}
+
+.btn-delete-class {
+  width: 100%;
+  padding: 8px;
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-delete-class:hover {
+  background: #ff5252;
+}
+
+/* 学生输入 */
+.student-input {
+  width: 100%;
+  min-height: 120px;
+  padding: 12px;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  resize: vertical;
+  background: var(--bg-color);
+  color: var(--text-primary);
+  font-family: inherit;
+  line-height: 1.5;
+}
+
+.student-input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.student-count {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-align: right;
+}
+
+.student-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.btn-add-students {
+  padding: 10px;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-add-students:hover {
+  background: var(--primary-hover);
+}
+
+.btn-import {
+  padding: 8px;
+  background: var(--bg-color);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-import:hover {
+  border-color: var(--primary-color);
+}
+
+/* 学生列表 */
+.student-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.student-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: var(--bg-color);
+  border-radius: 16px;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.student-tag button {
+  background: none;
+  border: none;
+  color: var(--text-light);
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0;
+  margin-left: 2px;
+}
+
+.student-tag button:hover {
+  color: #ff6b6b;
+}
+
+/* 布局设置 */
+.layout-inputs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.layout-row {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.layout-row label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.layout-row input,
+.layout-row select {
+  padding: 8px 10px;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  background: var(--bg-color);
+  color: var(--text-primary);
+}
+
+.layout-row input:focus,
+.layout-row select:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.btn-generate {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 8px;
+}
+
+.btn-generate:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+/* 快捷操作 */
+.quick-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.quick-actions button {
+  padding: 10px;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.quick-actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-random {
+  background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+  color: white;
+}
+
+.btn-random:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.btn-clear {
+  background: #ff9800;
+  color: white;
+}
+
+.btn-clear:hover:not(:disabled) {
+  background: #f57c00;
+}
+
+.btn-print {
+  background: var(--primary-color);
+  color: white;
+}
+
+.btn-print:hover {
+  background: var(--primary-hover);
+}
+
+.btn-pdf {
+  background: #2E7D32;
+  color: white;
+}
+
+.btn-pdf:hover {
+  background: #388E3C;
+}
+
+/* 统计信息 */
+.stats-section {
+  background: linear-gradient(135deg, #f5f7fa, #e4e8ec);
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.stat-item:last-child {
+  border-bottom: none;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.stat-value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ===== 右侧预览区域 ===== */
+.seat-preview-area {
+  flex: 1;
+  min-width: 0;
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow-x: auto;
+}
+
+.preview-header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.preview-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* 讲台 */
+.podium {
+  background: linear-gradient(135deg, #1976D2, #1565C0);
+  color: white;
+  padding: 12px 40px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  margin: 10px 0;
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+  align-self: center;
+}
+
+.podium-top {
+  order: -1;
+}
+
+.podium-bottom {
+  order: 1;
+}
+
+.podium-left {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  margin: 0 10px;
+  padding: 40px 12px;
+}
+
+.podium-right {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  margin: 0 10px;
+  padding: 40px 12px;
+}
+
+/* 座位网格 */
+.seat-grid {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+  max-width: 900px;
+  padding: 20px;
+}
+
+/* 座位卡片 */
+.seat-card {
+  position: relative;
+  min-height: 70px;
+  background: #eef5ff;
+  border: 1px solid #bcd3ff;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  transition: var(--transition);
+  user-select: none;
+}
+
+.seat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.seat-card:active {
+  cursor: grabbing;
+}
+
+.seat-content {
+  padding: 8px;
+  text-align: center;
+  width: 100%;
+}
+
+.student-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  word-break: break-word;
+  line-height: 1.3;
+}
+
+.empty-label {
+  font-size: 0.85rem;
+  color: #999;
+}
+
+/* 空座样式 */
+.seat-empty {
+  background: repeating-linear-gradient(
+    45deg,
+    #f0f0f0,
+    #f0f0f0 10px,
+    #e0e0e0 10px,
+    #e0e0e0 20px
+  );
+  border: 2px dashed #ccc;
+  cursor: default;
+}
+
+.seat-empty .seat-content {
+  opacity: 0.5;
+}
+
+/* 锁定座位 */
+.seat-locked {
+  border: 2px solid #FFD700;
+  background: linear-gradient(135deg, #fffde7, #fff9c4);
+  cursor: not-allowed;
+}
+
+.seat-locked:hover {
+  transform: none;
+}
+
+.lock-icon {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  font-size: 0.7rem;
+}
+
+/* 座位操作按钮 */
+.seat-actions {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  display: flex;
+  gap: 2px;
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.seat-card:hover .seat-actions {
+  opacity: 1;
+}
+
+.seat-action-btn {
+  width: 22px;
+  height: 22px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  transition: var(--transition);
+}
+
+.seat-action-btn:hover {
+  transform: scale(1.1);
+}
+
+/* 拖拽状态 */
+.seat-card.dragging {
+  opacity: 0.5;
+  transform: scale(0.95);
+}
+
+.seat-card.drag-over {
+  background: #c8e6c9;
+  border-color: #4CAF50;
+  transform: scale(1.02);
+}
+
+/* 未安排学生 */
+.unassigned-section {
+  width: 100%;
+  max-width: 900px;
+  margin-top: 20px;
+  padding: 16px;
+  background: #fff3e0;
+  border-radius: 8px;
+  border: 2px solid #ffb74d;
+}
+
+.unassigned-section h4 {
+  font-size: 0.95rem;
+  color: #e65100;
+  margin-bottom: 12px;
+}
+
+.unassigned-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.unassigned-tag {
+  padding: 6px 12px;
+  background: #fff;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  color: #e65100;
+  border: 1px solid #ffb74d;
+}
+
+.btn-auto-assign {
+  padding: 8px 16px;
+  background: #ff9800;
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-auto-assign:hover {
+  background: #f57c00;
+}
+
+/* 空预览 */
+.preview-empty {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  color: var(--text-light);
+  font-size: 1rem;
+  width: 100%;
+}
+
+/* ===== 打印样式 ===== */
+@media print {
+  .seat-manager-sidebar,
+  .sidebar-section,
+  .seat-actions,
+  .unassigned-section,
+  .preview-header h2 {
+    display: none !important;
+  }
+
+  .seat-manager-tool {
+    padding: 0;
+  }
+
+  .seat-preview-area {
+    box-shadow: none;
+    padding: 20px;
+    width: 100%;
+  }
+
+  .seat-grid {
+    padding: 10px;
+  }
+
+  .seat-card {
+    min-height: 60px;
+    border: 1px solid #333;
+    background: #fff;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .seat-empty {
+    background: #f0f0f0 !important;
+  }
+
+  .seat-locked {
+    border: 2px solid #333 !important;
+    background: #fffde7 !important;
+  }
+
+  .podium {
+    background: #1976D2 !important;
+    color: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  .seat-preview-area,
+  .seat-preview-area * {
+    visibility: visible;
+  }
+
+  .seat-preview-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 1200px) {
+  .seat-manager-tool {
+    flex-direction: column;
+  }
+
+  .seat-manager-sidebar {
+    width: 100%;
+    max-height: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .sidebar-section {
+    flex: 1;
+    min-width: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .seat-manager-tool {
+    padding: 10px;
+  }
+
+  .seat-manager-sidebar {
+    display: block;
+  }
+
+  .seat-preview-area {
+    padding: 14px;
+  }
+
+  .seat-grid {
+    gap: 6px;
+    padding: 10px;
+    min-width: 620px;
+  }
+
+  .seat-card {
+    min-height: 60px;
+  }
+
+  .student-name {
+    font-size: 0.85rem;
+  }
+
+  .quick-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .layout-inputs {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .seat-card {
+    min-height: 50px;
+  }
+
+  .seat-content {
+    padding: 4px;
+  }
+
+  .student-name {
+    font-size: 0.75rem;
+  }
+
+  .podium {
+    padding: 8px 20px;
+    font-size: 0.85rem;
+  }
+}

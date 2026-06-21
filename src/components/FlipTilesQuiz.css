@@ -1,0 +1,785 @@
+/* 翻格子游戏样式 */
+
+.flip-tiles-page {
+  min-height: calc(100vh - 200px);
+  padding: 24px;
+  background: #F7F8FA;
+}
+
+/* 步骤进度 */
+.step-progress {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.step-dot {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid #E5E7EB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #6B7280;
+  transition: all 0.2s;
+  position: relative;
+  z-index: 1;
+}
+
+.step-dot.active {
+  background: #5B5CFF;
+  border-color: #5B5CFF;
+  color: white;
+}
+
+.step-dot.completed {
+  background: #10B981;
+  border-color: #10B981;
+}
+
+.step-labels {
+  position: absolute;
+  top: 48px;
+  display: flex;
+  gap: 60px;
+  font-size: 0.85rem;
+  color: #6B7280;
+}
+
+/* 步骤容器 */
+.flip-step-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.step-header-section {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.step-header-section h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.step-header-section p {
+  color: #6B7280;
+  font-size: 1rem;
+}
+
+/* 题目列表 */
+.questions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.question-card {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.question-number {
+  width: 28px;
+  height: 28px;
+  background: #E5E7EB;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #6B7280;
+  flex-shrink: 0;
+}
+
+.question-fields {
+  flex: 1;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.question-field {
+  flex: 1;
+  min-width: 150px;
+}
+
+.question-field.small {
+  flex: 0 0 80px;
+}
+
+.question-field label {
+  display: block;
+  font-size: 0.8rem;
+  color: #6B7280;
+  margin-bottom: 4px;
+}
+
+.question-field input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.question-field input:focus {
+  outline: none;
+  border-color: #5B5CFF;
+}
+
+.question-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.copy-btn,
+.delete-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid #E5E7EB;
+  background: white;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.copy-btn:hover {
+  border-color: #5B5CFF;
+}
+
+.delete-btn:hover {
+  background: #FEE2E2;
+  border-color: #FCA5A5;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: #6B7280;
+}
+
+/* 按钮 */
+.step-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.add-btn,
+.import-btn,
+.export-btn,
+.import-config-btn,
+.clear-btn {
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.add-btn,
+.primary {
+  background: #5B5CFF;
+  color: white;
+  border: none;
+}
+
+.add-btn:hover {
+  background: #4338CA;
+}
+
+.import-btn,
+.export-btn,
+.import-config-btn {
+  background: white;
+  border: 1px solid #E5E7EB;
+  color: #6B7280;
+}
+
+.import-btn:hover,
+.export-btn:hover,
+.import-config-btn:hover {
+  border-color: #5B5CFF;
+  color: #5B5CFF;
+}
+
+.clear-btn {
+  background: #FEE2E2;
+  border: 1px solid #FCA5A5;
+  color: #DC2626;
+}
+
+.clear-btn:hover {
+  background: #FCA5A5;
+  color: white;
+}
+
+.step-nav {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.next-btn,
+.start-btn,
+.back-btn {
+  padding: 14px 32px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.next-btn,
+.start-btn {
+  background: #5B5CFF;
+  color: white;
+  border: none;
+}
+
+.next-btn:hover,
+.start-btn:hover {
+  background: #4338CA;
+  transform: translateY(-2px);
+}
+
+.next-btn:disabled {
+  background: #E5E7EB;
+  color: #9CA3AF;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.back-btn {
+  background: white;
+  border: 2px solid #E5E7EB;
+  color: #6B7280;
+}
+
+.back-btn:hover {
+  border-color: #5B5CFF;
+  color: #5B5CFF;
+}
+
+/* 设置卡片 */
+.settings-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.setting-item {
+  margin-bottom: 20px;
+}
+
+.setting-item:last-child {
+  margin-bottom: 0;
+}
+
+.setting-item > label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 12px;
+}
+
+.setting-options {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.option-btn {
+  padding: 10px 20px;
+  border: 2px solid #E5E7EB;
+  border-radius: 10px;
+  background: white;
+  font-size: 0.9rem;
+  color: #6B7280;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.option-btn:hover {
+  border-color: #5B5CFF;
+  color: #5B5CFF;
+}
+
+.option-btn.active {
+  background: #5B5CFF;
+  border-color: #5B5CFF;
+  color: white;
+}
+
+.toggle-switch {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.toggle-switch input {
+  width: 20px;
+  height: 20px;
+}
+
+.game-preview {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+}
+
+.game-preview h3 {
+  font-size: 1rem;
+  color: #111827;
+  margin-bottom: 12px;
+}
+
+.preview-info {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 0.9rem;
+  color: #6B7280;
+}
+
+/* 游戏主界面 */
+.flip-game-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* 分数面板 */
+.score-panel {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.team-scores {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+.team-score {
+  text-align: center;
+  padding: 12px 24px;
+  border-radius: 12px;
+  background: #F7F8FA;
+  transition: all 0.2s;
+}
+
+.team-score.current {
+  background: #EEF2FF;
+  border: 2px solid #5B5CFF;
+}
+
+.team-name {
+  display: block;
+  font-size: 0.9rem;
+  color: #6B7280;
+  margin-bottom: 4px;
+}
+
+.team-points {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+/* 格子 */
+.tiles-grid {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.tile {
+  aspect-ratio: 1;
+  background: white;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.tile:hover:not(.revealed) {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.tile.revealed {
+  background: #F7F8FA;
+  cursor: default;
+}
+
+.tile.revealed.question {
+  background: #DCFCE7;
+}
+
+.tile.revealed.bonus {
+  background: #FEF3C7;
+}
+
+.tile.revealed.penalty {
+  background: #FEE2E2;
+}
+
+.tile.revealed.gift {
+  background: #DBEAFE;
+}
+
+.tile-number {
+  font-size: 2rem;
+  color: #5B5CFF;
+}
+
+.tile-done {
+  font-size: 1.5rem;
+}
+
+/* 控制栏 */
+.game-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border-radius: 16px;
+  padding: 16px 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.current-turn {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #5B5CFF;
+}
+
+.control-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.reset-btn,
+.fullscreen-btn {
+  padding: 10px 20px;
+  border: 1px solid #E5E7EB;
+  border-radius: 10px;
+  background: white;
+  font-size: 0.9rem;
+  color: #6B7280;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.reset-btn:hover {
+  border-color: #DC2626;
+  color: #DC2626;
+}
+
+.fullscreen-btn:hover {
+  border-color: #5B5CFF;
+  color: #5B5CFF;
+}
+
+/* 弹窗 */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  animation: modal-in 0.2s ease-out;
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-content h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 16px;
+}
+
+.question-display {
+  background: #F7F8FA;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.points-badge {
+  display: inline-block;
+  background: #5B5CFF;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.question-text {
+  font-size: 1.25rem;
+  color: #111827;
+  line-height: 1.5;
+}
+
+.answer-section {
+  margin-bottom: 20px;
+}
+
+.toggle-answer-btn {
+  padding: 8px 16px;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  background: white;
+  font-size: 0.9rem;
+  color: #6B7280;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.toggle-answer-btn:hover {
+  border-color: #5B5CFF;
+  color: #5B5CFF;
+}
+
+.answer-text {
+  margin-top: 12px;
+  padding: 12px;
+  background: #DCFCE7;
+  border-radius: 8px;
+  color: #166534;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.correct-btn,
+.wrong-btn,
+.skip-btn,
+.collect-btn,
+.confirm-btn,
+.restart-btn,
+.back-btn {
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.correct-btn,
+.collect-btn {
+  background: #10B981;
+  border: none;
+  color: white;
+}
+
+.correct-btn:hover,
+.collect-btn:hover {
+  background: #059669;
+}
+
+.wrong-btn,
+.skip-btn {
+  background: white;
+  border: 2px solid #E5E7EB;
+  color: #6B7280;
+}
+
+.wrong-btn:hover,
+.skip-btn:hover {
+  border-color: #DC2626;
+  color: #DC2626;
+}
+
+.confirm-btn {
+  background: #F59E0B;
+  border: none;
+  color: white;
+}
+
+.restart-btn {
+  background: #5B5CFF;
+  border: none;
+  color: white;
+}
+
+.back-btn {
+  background: white;
+  border: 2px solid #E5E7EB;
+  color: #6B7280;
+}
+
+/* 奖励/惩罚弹窗 */
+.bonus-modal p,
+.penalty-modal p {
+  font-size: 1.1rem;
+  color: #6B7280;
+  margin-bottom: 20px;
+}
+
+.gift-teams {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.gift-team-btn {
+  padding: 12px 24px;
+  border: 2px solid #E5E7EB;
+  border-radius: 12px;
+  background: white;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.gift-team-btn:hover {
+  border-color: #5B5CFF;
+  color: #5B5CFF;
+}
+
+/* 结束弹窗 */
+.final-scores {
+  margin: 20px 0;
+}
+
+.final-score {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: #F7F8FA;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.score-value {
+  font-weight: 700;
+  color: #5B5CFF;
+}
+
+.winner {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #10B981;
+  margin-bottom: 24px;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .flip-tiles-page {
+    padding: 16px;
+  }
+
+  .step-labels {
+    display: none;
+  }
+
+  .question-fields {
+    flex-direction: column;
+  }
+
+  .question-field.small {
+    flex: 1;
+  }
+
+  .team-scores {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .team-score {
+    flex: 1;
+    min-width: 80px;
+  }
+
+  .tiles-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  .tile-number {
+    font-size: 1.25rem;
+  }
+
+  .game-controls {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+  }
+
+  .correct-btn,
+  .wrong-btn,
+  .skip-btn,
+  .collect-btn,
+  .confirm-btn,
+  .restart-btn,
+  .back-btn {
+    width: 100%;
+  }
+}

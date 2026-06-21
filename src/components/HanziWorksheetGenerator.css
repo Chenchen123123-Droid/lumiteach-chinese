@@ -1,0 +1,566 @@
+/* ===== 汉字字帖生成器 ===== */
+
+.hanzi-worksheet-generator {
+  display: flex;
+  gap: 24px;
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ===== 左侧设置面板 ===== */
+.worksheet-settings {
+  width: 320px;
+  flex-shrink: 0;
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-md);
+  height: fit-content;
+  position: sticky;
+  top: 20px;
+}
+
+.settings-header {
+  margin-bottom: 20px;
+}
+
+.settings-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.settings-description {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.form-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  resize: vertical;
+  font-family: inherit;
+  background: var(--bg-color);
+}
+
+.form-textarea:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.form-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+
+.char-count {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+/* 单选按钮组 */
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  padding: 6px 10px;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  transition: var(--transition);
+}
+
+.radio-label:hover {
+  border-color: var(--primary-color);
+}
+
+.radio-label input[type="radio"] {
+  accent-color: var(--primary-color);
+}
+
+.radio-label:has(input:checked) {
+  border-color: var(--primary-color);
+  background: var(--primary-light);
+}
+
+/* 滑块 */
+.form-slider {
+  width: 100%;
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--border-color);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.form-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  cursor: pointer;
+}
+
+.form-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  cursor: pointer;
+  border: none;
+}
+
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--text-light);
+}
+
+/* 颜色选择 */
+.color-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-color {
+  width: 40px;
+  height: 32px;
+  padding: 0;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.color-value {
+  font-size: 0.85rem;
+  font-family: monospace;
+  color: var(--text-secondary);
+}
+
+/* Checkbox */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary-color);
+}
+
+.form-hint {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  font-style: italic;
+  margin: 0;
+}
+
+/* 表单按钮 */
+.form-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.form-buttons button {
+  flex: 1;
+  min-width: 80px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-reset {
+  background: var(--bg-color);
+  border: 2px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.btn-reset:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-print {
+  background: var(--primary-color);
+  border: none;
+  color: white;
+}
+
+.btn-print:hover {
+  background: var(--primary-hover);
+}
+
+.btn-pdf {
+  background: #2E7D32;
+  border: none;
+  color: white;
+}
+
+.btn-pdf:hover {
+  background: #388E3C;
+}
+
+/* 笔顺动画面板 */
+.stroke-animation-panel {
+  margin-top: 16px;
+  padding: 16px;
+  background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+  border-radius: var(--radius-md);
+  border: 2px solid #4CAF50;
+}
+
+.stroke-animation-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.stroke-hint {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  font-weight: 400;
+}
+
+.stroke-animation-demo {
+  text-align: center;
+  padding: 20px;
+  background: white;
+  border-radius: var(--radius-md);
+  margin-bottom: 12px;
+  font-family: KaiTi, STKaiti, "Kaiti SC", serif;
+}
+
+.stroke-animation-controls {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.btn-stroke-play {
+  padding: 8px 20px;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.stroke-note {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  text-align: center;
+  margin: 0;
+}
+
+/* ===== 右侧预览区域 ===== */
+.worksheet-preview {
+  flex: 1;
+  min-width: 0;
+}
+
+.preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.preview-header h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.page-info {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.preview-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow-y: auto;
+  max-height: calc(100vh - 180px);
+  padding-right: 8px;
+}
+
+.preview-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
+  background: var(--bg-color);
+  border-radius: var(--radius-lg);
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+/* A4页面 */
+.worksheet-page {
+  position: relative;
+  width: 794px;
+  min-height: 1123px;
+  background: white;
+  box-shadow: var(--shadow-lg);
+  padding: 40px 50px;
+  border-radius: 4px;
+  /* A4比例 */
+  aspect-ratio: 210 / 297;
+}
+
+.worksheet-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.worksheet-header h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 10px;
+  font-family: KaiTi, STKaiti, "Kaiti SC", serif;
+}
+
+.header-info {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  font-size: 1rem;
+  color: #666;
+}
+
+.worksheet-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.practice-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+}
+
+.row-pinyin {
+  width: 65px;
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.cells-row {
+  display: grid;
+  gap: 2px;
+}
+
+.cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cell-tracing {
+  cursor: pointer;
+}
+
+.cell-tracing:hover {
+  background: #f5f5f5;
+}
+
+.grid-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.grid-cell-none {
+  width: 100%;
+  height: 100%;
+}
+
+.tracing-char-container {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: KaiTi, STKaiti, "Kaiti SC", serif;
+  font-weight: bold;
+  user-select: none;
+  pointer-events: none;
+}
+
+.stroke-obstacles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.stroke-obstacle {
+  position: absolute;
+  background: white;
+}
+
+.worksheet-footer {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.9rem;
+  color: #999;
+}
+
+/* ===== 打印样式 ===== */
+@media print {
+  .worksheet-settings,
+  .preview-header {
+    display: none !important;
+  }
+
+  .hanzi-worksheet-generator {
+    padding: 0;
+  }
+
+  .worksheet-preview {
+    width: 100%;
+  }
+
+  .preview-scroll {
+    overflow: visible;
+    max-height: none;
+  }
+
+  .worksheet-page {
+    width: 100%;
+    box-shadow: none;
+    page-break-after: always;
+    border-radius: 0;
+  }
+
+  .cell-tracing:hover {
+    background: transparent;
+  }
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 1200px) {
+  .hanzi-worksheet-generator {
+    flex-direction: column;
+  }
+
+  .worksheet-settings {
+    width: 100%;
+    position: static;
+  }
+
+  .worksheet-preview {
+    width: 100%;
+  }
+
+  .worksheet-page {
+    width: 794px;
+    min-height: 1123px;
+    padding: 40px 50px;
+    zoom: 0.78;
+  }
+
+  .row-pinyin {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .hanzi-worksheet-generator {
+    padding: 10px;
+  }
+
+  .preview-scroll {
+    align-items: flex-start;
+    max-height: none;
+    overflow: auto;
+  }
+
+  .worksheet-page {
+    zoom: 0.42;
+  }
+
+  .settings-title {
+    font-size: 1.25rem;
+  }
+
+  .form-buttons {
+    flex-direction: column;
+  }
+
+  .form-buttons button {
+    width: 100%;
+  }
+}
+
+/* 放在响应式规则之后，避免打印时继承屏幕缩放。 */
+@media print {
+  .worksheet-page {
+    width: 794px;
+    min-height: 1123px;
+    padding: 40px 50px;
+    zoom: 1;
+  }
+
+  .preview-scroll {
+    max-height: none;
+    overflow: visible;
+  }
+}

@@ -1,0 +1,113 @@
+/* 游戏选择器 - 绝对最小化布局 */
+.game-selector {
+  margin: 32px auto;
+  padding: 20px;
+  width: 100%;
+  max-width: 1200px;
+  background: transparent;
+}
+
+.selector-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 24px;
+  background: transparent;
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  width: 100%;
+  background: transparent;
+}
+
+.game-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
+  cursor: pointer;
+  border: 2px solid #e5e7eb;
+  min-height: 150px;
+  box-sizing: border-box;
+}
+
+.game-card:hover {
+  border-color: #5B5CFF;
+  transform: translateY(-2px);
+}
+
+.game-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.game-icon {
+  font-size: 24px;
+}
+
+.game-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.game-description {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 8px 0;
+  line-height: 1.4;
+}
+
+.game-features {
+  margin-top: auto;
+}
+
+.difficulty {
+  font-size: 12px;
+  color: #5B5CFF;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.feature-tag {
+  font-size: 11px;
+  padding: 2px 8px;
+  background: #f3f4f6;
+  border-radius: 4px;
+  color: #374151;
+}
+
+/* 响应式 */
+@media (max-width: 900px) {
+  .game-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .game-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 450px) {
+  .game-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .game-card {
+    min-height: 120px;
+    padding: 12px;
+  }
+}

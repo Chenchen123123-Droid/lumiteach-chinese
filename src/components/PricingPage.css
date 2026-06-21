@@ -1,0 +1,153 @@
+/* 价格方案页面样式 - Free Beta */
+
+.pricing-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 60px 24px;
+  background: #F5F5F7;
+  min-height: calc(100vh - 200px);
+}
+
+.pricing-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.pricing-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1D1D1F;
+  margin-bottom: 12px;
+}
+
+.pricing-subtitle {
+  font-size: 1.15rem;
+  color: #6E6E73;
+}
+
+.free-beta-notice {
+  background: linear-gradient(135deg, #E8F5E9 0%, #E3F2FD 100%);
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.free-beta-notice h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1D1D1F;
+  margin-bottom: 12px;
+}
+
+.free-beta-notice p {
+  font-size: 1.1rem;
+  color: #6E6E73;
+  line-height: 1.6;
+}
+
+.contact-section-pricing {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.contact-section-pricing h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1D1D1F;
+  margin-bottom: 12px;
+}
+
+.contact-section-pricing > p {
+  color: #6E6E73;
+  margin-bottom: 24px;
+}
+
+.contact-emails-pricing {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.contact-emails-pricing a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  background: #F5F5F7;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #1D1D1F;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.contact-emails-pricing a:hover {
+  background: #E8E8ED;
+}
+
+.pricing-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.btn-contact-pricing {
+  padding: 14px 32px;
+  background: #1D1D1F;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-contact-pricing:hover {
+  background: #2C2C2E;
+}
+
+.btn-explore-pricing {
+  padding: 14px 32px;
+  background: white;
+  color: #1D1D1F;
+  border: 2px solid #E5E7EB;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-explore-pricing:hover {
+  border-color: #1D1D1F;
+}
+
+@media (max-width: 600px) {
+  .pricing-page {
+    padding: 40px 16px;
+  }
+
+  .pricing-title {
+    font-size: 1.75rem;
+  }
+
+  .free-beta-notice,
+  .contact-section-pricing {
+    padding: 24px;
+  }
+
+  .pricing-actions {
+    flex-direction: column;
+  }
+
+  .btn-contact-pricing,
+  .btn-explore-pricing {
+    width: 100%;
+  }
+}

@@ -1,0 +1,115 @@
+/* ===== 开发者测试切换器样式 ===== */
+/* ！！！正式上线前删除此组件！！！ */
+
+.plan-dev-switcher {
+  position: relative;
+  z-index: 100;
+}
+
+.dev-switcher-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: #ffd700;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dev-switcher-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #ffd700;
+}
+
+.dev-switcher-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  min-width: 180px;
+  border: 1px solid #e0e0e0;
+}
+
+.dev-label {
+  font-size: 0.8rem;
+  color: #666;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.dev-options {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dev-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: #f5f5f5;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #333;
+  transition: all 0.2s ease;
+}
+
+.dev-option:hover {
+  background: #e8e8e8;
+}
+
+.dev-option.active {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+}
+
+.current-tag {
+  font-weight: bold;
+}
+
+.dev-hint {
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid #e0e0e0;
+  font-size: 0.7rem;
+  color: #ff9800;
+  text-align: center;
+}
+
+/* 暗黑模式适配 */
+@media (prefers-color-scheme: dark) {
+  .dev-switcher-dropdown {
+    background: #1a1a2e;
+    border-color: #2a2a4e;
+  }
+
+  .dev-label {
+    color: #aaa;
+    border-color: #2a2a4e;
+  }
+
+  .dev-option {
+    background: #2a2a4e;
+    color: #fff;
+  }
+
+  .dev-option:hover {
+    background: #3a3a5e;
+  }
+
+  .dev-hint {
+    border-color: #2a2a4e;
+  }
+}

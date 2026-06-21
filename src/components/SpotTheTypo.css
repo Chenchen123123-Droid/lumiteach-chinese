@@ -1,0 +1,686 @@
+/* 找错别字工具样式 */
+
+.spot-the-typo-page {
+  min-height: calc(100vh - 200px);
+  padding: 24px;
+  background: #F7F8FA;
+}
+
+/* 设置页面容器 */
+.typo-setup-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* 模式选择 */
+.mode-select {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.mode-btn {
+  padding: 14px 28px;
+  background: white;
+  border: 2px solid #E5E7EB;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #6B7280;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mode-btn:hover {
+  border-color: #5B5CFF;
+  color: #5B5CFF;
+}
+
+.mode-btn.active {
+  background: #5B5CFF;
+  border-color: #5B5CFF;
+  color: white;
+}
+
+/* 设置区块 */
+.setup-section,
+.ai-section,
+.settings-section {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.setup-section h3,
+.ai-section h3,
+.settings-section h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 16px;
+}
+
+.help-text {
+  font-size: 0.85rem;
+  color: #6B7280;
+  margin-bottom: 12px;
+}
+
+/* 批量导入 */
+.import-textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 12px;
+  border: 1px solid #E5E7EB;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  resize: vertical;
+  margin-bottom: 12px;
+}
+
+.import-textarea:focus {
+  outline: none;
+  border-color: #5B5CFF;
+}
+
+.import-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.import-btn,
+.load-default-btn {
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.import-btn {
+  background: #5B5CFF;
+  color: white;
+  border: none;
+}
+
+.import-btn:hover {
+  background: #4338CA;
+}
+
+.load-default-btn {
+  background: white;
+  border: 1px solid #E5E7EB;
+  color: #6B7280;
+}
+
+.load-default-btn:hover {
+  border-color: #5B5CFF;
+  color: #5B5CFF;
+}
+
+/* 题目列表 */
+.questions-list {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.list-header h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.clear-all-btn {
+  padding: 8px 14px;
+  background: #FEE2E2;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: #DC2626;
+  cursor: pointer;
+}
+
+.empty-text {
+  text-align: center;
+  color: #6B7280;
+  padding: 20px;
+}
+
+.question-items {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.question-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  background: #F7F8FA;
+}
+
+.q-number {
+  width: 24px;
+  height: 24px;
+  background: #E5E7EB;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: #6B7280;
+  flex-shrink: 0;
+}
+
+.q-sentence {
+  flex: 1;
+  font-size: 0.9rem;
+  color: #111827;
+}
+
+.q-wrong,
+.q-correct {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.q-wrong {
+  color: #DC2626;
+}
+
+.q-correct {
+  color: #10B981;
+}
+
+.q-arrow {
+  color: #9CA3AF;
+}
+
+.delete-btn {
+  width: 28px;
+  height: 28px;
+  background: white;
+  border: 1px solid #E5E7EB;
+  border-radius: 6px;
+  color: #6B7280;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.delete-btn:hover {
+  background: #FEE2E2;
+  border-color: #FCA5A5;
+  color: #DC2626;
+}
+
+/* AI 设置 */
+.ai-settings {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.ai-settings select {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.ai-topic-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+.ai-topic-input:focus,
+.ai-settings select:focus {
+  outline: none;
+  border-color: #5B5CFF;
+}
+
+.ai-generate-btn {
+  width: 100%;
+  padding: 12px;
+  background: #F59E0B;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ai-generate-btn:hover {
+  background: #D97706;
+}
+
+/* 游戏设置 */
+.setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #F3F4F6;
+}
+
+.setting-row:last-child {
+  border-bottom: none;
+}
+
+.setting-row label {
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+.setting-row select {
+  padding: 8px 14px;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  background: white;
+}
+
+/* 开始按钮 */
+.start-btn {
+  width: 100%;
+  padding: 16px;
+  background: #5B5CFF;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.start-btn:hover:not(:disabled) {
+  background: #4338CA;
+  transform: translateY(-2px);
+}
+
+.start-btn:disabled {
+  background: #E5E7EB;
+  color: #9CA3AF;
+  cursor: not-allowed;
+}
+
+/* 游戏容器 */
+.typo-game-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* 状态栏 */
+.game-status-bar {
+  display: flex;
+  justify-content: space-around;
+  background: white;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 32px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.status-item {
+  text-align: center;
+}
+
+.status-label {
+  display: block;
+  font-size: 0.75rem;
+  color: #6B7280;
+  margin-bottom: 4px;
+}
+
+.status-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+/* 游戏内容 */
+.game-content {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.game-prompt {
+  font-size: 1.1rem;
+  color: #6B7280;
+  margin-bottom: 32px;
+}
+
+/* 句子显示 */
+.sentence-display {
+  font-size: 1.75rem;
+  line-height: 2;
+  color: #111827;
+  margin-bottom: 24px;
+}
+
+.clickable-word {
+  display: inline;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: all 0.15s;
+}
+
+.clickable-word:hover {
+  background: #EEF2FF;
+}
+
+.clickable-word.target.revealed {
+  background: #10B981;
+  color: white;
+}
+
+/* 词语显示 */
+.words-display {
+  padding: 40px 0;
+}
+
+.words-pair {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.word-card {
+  padding: 30px 50px;
+  background: white;
+  border: 3px solid #E5E7EB;
+  border-radius: 20px;
+  font-size: 2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.word-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.word-card.wrong {
+  border-color: #FEE2E2;
+}
+
+.word-card.wrong.revealed {
+  background: #DCFCE7;
+  border-color: #10B981;
+}
+
+/* 反馈卡片 */
+.feedback-card {
+  margin-top: 32px;
+  padding: 24px;
+  background: #F7F8FA;
+  border-radius: 16px;
+}
+
+.feedback-icon {
+  font-size: 2.5rem;
+  margin-bottom: 8px;
+}
+
+.feedback-icon.correct {
+  color: #10B981;
+}
+
+.feedback-icon.wrong {
+  color: #DC2626;
+}
+
+.feedback-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 16px;
+}
+
+.correction-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.correction-info .wrong {
+  color: #DC2626;
+}
+
+.correction-info .arrow {
+  color: #9CA3AF;
+}
+
+.correction-info .correct {
+  color: #10B981;
+}
+
+.next-btn {
+  padding: 14px 32px;
+  background: #5B5CFF;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.next-btn:hover {
+  background: #4338CA;
+}
+
+/* 结果页面 */
+.typo-result-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.typo-result-container h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 24px;
+}
+
+.result-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.8rem;
+  color: #6B7280;
+  margin-bottom: 6px;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.stat-value.correct {
+  color: #10B981;
+}
+
+.stat-value.wrong {
+  color: #DC2626;
+}
+
+/* 复盘 */
+.review-section {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  text-align: left;
+}
+
+.review-section h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.review-items {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.review-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  background: #F7F8FA;
+}
+
+.review-item.correct {
+  border-left: 3px solid #10B981;
+}
+
+.review-item.wrong {
+  border-left: 3px solid #DC2626;
+}
+
+.review-status {
+  font-weight: 600;
+  width: 20px;
+}
+
+.review-item.correct .review-status {
+  color: #10B981;
+}
+
+.review-item.wrong .review-status {
+  color: #DC2626;
+}
+
+.review-sentence {
+  flex: 1;
+  font-size: 0.85rem;
+  color: #374151;
+}
+
+.review-wrong {
+  color: #DC2626;
+  font-weight: 600;
+}
+
+.review-correct {
+  color: #10B981;
+  font-weight: 600;
+}
+
+.review-arrow {
+  color: #9CA3AF;
+}
+
+/* 结果按钮 */
+.result-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.restart-btn,
+.copy-review-btn,
+.back-btn {
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.restart-btn {
+  background: #5B5CFF;
+  color: white;
+  border: none;
+}
+
+.copy-review-btn {
+  background: white;
+  border: 1px solid #E5E7EB;
+  color: #6B7280;
+}
+
+.copy-review-btn:hover {
+  border-color: #5B5CFF;
+  color: #5B5CFF;
+}
+
+.back-btn {
+  background: #F3F4F6;
+  border: none;
+  color: #6B7280;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .spot-the-typo-page {
+    padding: 16px;
+  }
+
+  .result-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .words-pair {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .Sentence-display {
+    font-size: 1.25rem;
+  }
+}
