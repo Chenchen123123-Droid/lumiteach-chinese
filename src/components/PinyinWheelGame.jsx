@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 import './PinyinWheelGame.css';
 
-// 常用且有效的普通话音节。转盘每轮只展示 12 个，避免把整张拼音表塞进一个圆盘。
+// 只从这份合法普通话音节表抽取结果。三个圆环负责展示，绝不直接胡乱拼接。
 const COMMON_SYLLABLES = `
 a ai an ang ao ba bai ban bang bao bei ben beng bi bian biao bie bin bing bo bu
 ca cai can cang cao ce cen ceng cha chai chan chang chao che chen cheng chi chong chou chu chua chuai chuan chuang chui chun chuo ci cong cou cu cuan cui cun cuo
@@ -25,6 +25,7 @@ za zai zan zang zao ze zei zen zeng zha zhai zhan zhang zhao zhe zhei zhen zheng
 `.trim().split(/\s+/);
 
 const INITIALS = ['zh', 'ch', 'sh', 'b', 'p', 'm', 'f', 'd', 't', 'n', 'l', 'g', 'k', 'h', 'j', 'q', 'x', 'r', 'z', 'c', 's', 'y', 'w'];
+const INITIAL_RING = ['∅', 'b', 'p', 'm', 'f', 'd', 't', 'n', 'l', 'g', 'k', 'h', 'j', 'q', 'x', 'zh', 'ch', 'sh', 'r', 'z', 'c', 's', 'y', 'w'];
 const TONES = [
   { name: '第一声', mark: 'ˉ', value: 1 },
   { name: '第二声', mark: 'ˊ', value: 2 },
@@ -32,8 +33,12 @@ const TONES = [
   { name: '第四声', mark: 'ˋ', value: 4 }
 ];
 const TONE_MARKS = {
-  a: ['ā', 'á', 'ǎ', 'à'], o: ['ō', 'ó', 'ǒ', 'ò'], e: ['ē', 'é', 'ě', 'è'],
-  i: ['ī', 'í', 'ǐ', 'ì'], u: ['ū', 'ú', 'ǔ', 'ù'], ü: ['ǖ', 'ǘ', 'ǚ', 'ǜ']
+  a: ['ā', 'á', 'ǎ', 'à'],
+  o: ['ō', 'ó', 'ǒ', 'ò'],
+  e: ['ē', 'é', 'ě', 'è'],
+  i: ['ī', 'í', 'ǐ', 'ì'],
+  u: ['ū', 'ú', 'ǔ', 'ù'],
+  ü: ['ǖ', 'ǘ', 'ǚ', 'ǜ']
 };
 
 function splitSyllable(syllable) {
@@ -45,6 +50,12 @@ function splitSyllable(syllable) {
   return { base: syllable, initial, writtenFinal, displayFinal };
 }
 
+const SYLLABLES = COMMON_SYLLABLES.map(splitSyllable);
+const FINAL_RING = [...new Set(SYLLABLES.map(item => item.displayFinal))].sort((a, b) => {
+  if (a.length !== b.length) return a.length - b.length;
+  return a.localeCompare(b, 'zh-CN');
+});
+
 function addToneMark(finalChar, tone) {
   const index = tone - 1;
   if (finalChar.includes('a')) return finalChar.replace('a', TONE_MARKS.a[index]);
@@ -54,56 +65,66 @@ function addToneMark(finalChar, tone) {
   if (finalChar === 'ui') return `${TONE_MARKS.i[index]}u`;
   for (const vowel of ['ü', 'u', 'i']) {
     const position = finalChar.lastIndexOf(vowel);
-    if (position >= 0) return `${finalChar.slice(0, position)}${TONE_MARKS[vowel][index]}${finalChar.slice(position + 1)}`;
+    if (position >= 0) {
+      return `${finalChar.slice(0, position)}${TONE_MARKS[vowel][index]}${finalChar.slice(position + 1)}`;
+    }
   }
   return finalChar;
 }
 
-function pickOptions() {
-  const pool = [...COMMON_SYLLABLES];
-  const options = [];
-  while (options.length < 12 && pool.length) {
-    const index = Math.floor(Math.random() * pool.length);
-    options.push(splitSyllable(pool.splice(index, 1)[0]));
-  }
-  return options;
+function rotateToTop(items, selected) {
+  const index = items.indexOf(selected);
+  if (index < 0) return items;
+  return [...items.slice(index), ...items.slice(0, index)];
+}
+
+function RingItems({ items, selected }) {
+  const orderedItems = useMemo(() => rotateToTop(items, selected), [items, selected]);
+  return (
+    <div className="pw-ring-items">
+      {orderedItems.map((item, index) => {
+        const angle = index * (360 / orderedItems.length);
+        return (
+          <div
+            className={`pw-ring-item ${index === 0 && selected ? 'selected' : ''}`}
+            key={item}
+            style={{ '--angle': `${angle}deg` }}
+          >
+            <span>{item}</span>
+          </div>
+        );
+      })}
+    </div>
+  );
 }
 
 function PinyinWheelGame() {
   const { lang } = useLanguage();
-  const [options, setOptions] = useState(pickOptions);
   const [spinning, setSpinning] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(null);
   const [result, setResult] = useState(null);
-  const [rotation, setRotation] = useState(0);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const timerRef = useRef(null);
 
-  useEffect(() => () => window.clearTimeout(timerRef.current), []);
+  useEffect(() => () => {
+    window.clearTimeout(timerRef.current);
+    window.speechSynthesis?.cancel();
+  }, []);
 
   const startSpin = useCallback(() => {
     if (spinning) return;
-    const nextOptions = pickOptions();
-    // 新一组音节本身已经随机，指针固定选中顶部，避免“指针指 A、结果却是 B”。
-    const nextIndex = 0;
+    const syllable = SYLLABLES[Math.floor(Math.random() * SYLLABLES.length)];
     const tone = TONES[Math.floor(Math.random() * TONES.length)];
-    const syllable = nextOptions[nextIndex];
 
-    setOptions(nextOptions);
-    setSelectedIndex(null);
-    setResult(null);
     setSpinning(true);
-    setRotation(value => value + 1440 + Math.floor(Math.random() * 360));
-
+    setResult(null);
     timerRef.current = window.setTimeout(() => {
-      setSelectedIndex(nextIndex);
       setResult({
         ...syllable,
         tone,
         fullPinyin: `${syllable.initial}${addToneMark(syllable.writtenFinal, tone.value)}`
       });
       setSpinning(false);
-    }, 1700);
+    }, 1900);
   }, [spinning]);
 
   const speakPinyin = useCallback(() => {
@@ -121,42 +142,55 @@ function PinyinWheelGame() {
   const resetGame = () => {
     window.clearTimeout(timerRef.current);
     window.speechSynthesis?.cancel();
-    setOptions(pickOptions());
-    setSelectedIndex(null);
     setResult(null);
     setSpinning(false);
     setIsSpeaking(false);
   };
+
+  const selectedInitial = result ? (result.initial || '∅') : null;
+  const selectedFinal = result?.displayFinal || null;
+  const selectedTone = result?.tone.mark || null;
 
   return (
     <div className="pinyin-wheel-page">
       <header className="pw-header">
         <div>
           <span className="pw-eyebrow">PINYIN PRACTICE</span>
-          <h1>拼音大转盘</h1>
-          <p>{lang === 'zh' ? '每轮只显示 12 个常用音节，抽中后再拆解声母、韵母和声调。' : 'Twelve clear syllables per round, followed by a readable breakdown.'}</p>
+          <h1>拼音三层大转盘</h1>
+          <p>{lang === 'zh' ? '外圈选韵母，中圈选声母，内圈选声调；三层共同组成一个合法音节。' : 'Finals outside, initials in the middle, and tones inside—always forming a valid syllable.'}</p>
         </div>
-        <button className="pw-reset-top" onClick={resetGame}>{lang === 'zh' ? '换一组' : 'New set'}</button>
+        <button className="pw-reset-top" onClick={resetGame}>{lang === 'zh' ? '清空结果' : 'Reset'}</button>
       </header>
 
+      <div className="pw-ring-legend" aria-label="转盘层级说明">
+        <span className="final"><i />外圈 · 韵母</span>
+        <span className="initial"><i />中圈 · 声母</span>
+        <span className="tone"><i />内圈 · 声调</span>
+      </div>
+
       <div className="pw-classroom-layout">
-        <section className="pw-stage" aria-label={lang === 'zh' ? '拼音转盘' : 'Pinyin wheel'}>
+        <section className={`pw-stage ${spinning ? 'is-spinning' : ''}`} aria-label="拼音三层转盘">
           <div className="pw-wheel-shell">
-            <div className="pw-pointer"><span></span></div>
-            <div className={`pw-wheel-disc ${spinning ? 'spinning' : ''}`} style={{ transform: `rotate(${rotation}deg)` }} />
-            <div className="pw-wheel-options">
-              {options.map((option, index) => {
-                const angle = index * 30;
-                return (
-                  <div key={`${option.base}-${index}`} className={`pw-wheel-option ${selectedIndex === index ? 'selected' : ''}`} style={{ '--angle': `${angle}deg` }}>
-                    <span style={{ transform: `rotate(-${angle}deg)` }}>{option.base}</span>
-                  </div>
-                );
-              })}
+            <div className="pw-pointer"><span /></div>
+
+            <div className="pw-ring pw-ring-outer">
+              <div className="pw-ring-surface" />
+              <RingItems items={FINAL_RING} selected={selectedFinal} />
             </div>
+
+            <div className="pw-ring pw-ring-middle">
+              <div className="pw-ring-surface" />
+              <RingItems items={INITIAL_RING} selected={selectedInitial} />
+            </div>
+
+            <div className="pw-ring pw-ring-inner">
+              <div className="pw-ring-surface" />
+              <RingItems items={TONES.map(tone => tone.mark)} selected={selectedTone} />
+            </div>
+
             <button className="pw-center-btn" onClick={startSpin} disabled={spinning}>
               <span>{spinning ? '…' : 'GO'}</span>
-              <small>{spinning ? (lang === 'zh' ? '抽取中' : 'Spinning') : (lang === 'zh' ? '开始抽取' : 'Spin')}</small>
+              <small>{spinning ? (lang === 'zh' ? '转动中' : 'Spinning') : (lang === 'zh' ? '开始转动' : 'Spin')}</small>
             </button>
           </div>
         </section>
@@ -164,32 +198,40 @@ function PinyinWheelGame() {
         <aside className={`pw-result-card ${result ? 'has-result' : ''}`} aria-live="polite">
           {result ? (
             <>
-              <span className="pw-result-kicker">{lang === 'zh' ? '本轮拼音' : 'Selected pinyin'}</span>
+              <span className="pw-result-kicker">三层组合结果</span>
               <div className="pw-result-full">{result.fullPinyin}</div>
-              <div className="pw-result-grid">
-                <div><span>{lang === 'zh' ? '声母' : 'Initial'}</span><strong>{result.initial || '—'}</strong></div>
-                <div><span>{lang === 'zh' ? '韵母' : 'Final'}</span><strong>{result.displayFinal}</strong></div>
-                <div><span>{lang === 'zh' ? '声调' : 'Tone'}</span><strong>{result.tone.value}</strong><small>{result.tone.name}</small></div>
+              <div className="pw-equation" aria-label="拼音组合过程">
+                <strong>{result.initial || '∅'}</strong><span>＋</span>
+                <strong>{result.displayFinal}</strong><span>＋</span>
+                <strong>{result.tone.mark}</strong>
               </div>
+              <div className="pw-result-grid">
+                <div><span>声母</span><strong>{result.initial || '零声母'}</strong></div>
+                <div><span>韵母</span><strong>{result.displayFinal}</strong></div>
+                <div><span>声调</span><strong>{result.tone.value}</strong><small>{result.tone.name}</small></div>
+              </div>
+              {['j', 'q', 'x', 'y'].includes(result.initial) && result.displayFinal.startsWith('ü') && (
+                <p className="pw-rule-note">拼写规则：{result.initial} 和 ü 相拼时，ü 上两点省略。</p>
+              )}
               <div className="pw-result-actions">
                 <button className="pw-speak-btn" onClick={speakPinyin} disabled={isSpeaking}>🔊 {isSpeaking ? '朗读中…' : '朗读'}</button>
-                <button className="pw-again-btn" onClick={startSpin}>{lang === 'zh' ? '再抽一次' : 'Spin again'}</button>
+                <button className="pw-again-btn" onClick={startSpin}>再转一次</button>
               </div>
             </>
           ) : (
             <div className="pw-empty-result">
               <span>拼</span>
-              <h2>{lang === 'zh' ? '抽取结果会显示在这里' : 'Your result appears here'}</h2>
-              <p>{lang === 'zh' ? '点击转盘中央的“开始抽取”。' : 'Press the button in the center of the wheel.'}</p>
+              <h2>{spinning ? '三层转盘正在转动' : '点击中心开始转动'}</h2>
+              <p>{spinning ? '外圈、 中圈和内圈将同时停在一个合法组合上。' : '看指针依次读出声母、韵母和声调，再拼出完整音节。'}</p>
             </div>
           )}
         </aside>
       </div>
 
       <div className="pw-teaching-note">
-        <div><span>1</span><p><strong>先读完整音节</strong>让学生尝试直接拼读。</p></div>
-        <div><span>2</span><p><strong>再看结构拆解</strong>确认声母、韵母和声调。</p></div>
-        <div><span>3</span><p><strong>最后点击朗读</strong>核对课堂发音。</p></div>
+        <div><span>1</span><p><strong>先看三层落点</strong>分别说出声母、韵母和声调。</p></div>
+        <div><span>2</span><p><strong>尝试自己拼读</strong>先让学生读，再查看右侧答案。</p></div>
+        <div><span>3</span><p><strong>最后点击朗读</strong>核对发音并重复跟读。</p></div>
       </div>
     </div>
   );
