@@ -88,8 +88,9 @@
   font-weight: 800;
   line-height: 1.08;
   letter-spacing: -0.055em;
-  white-space: pre-line;
 }
+
+.hero-title span { display: block; white-space: nowrap; }
 
 .hero-subtitle {
   max-width: 570px;
@@ -219,7 +220,7 @@
 
 @media (max-width: 760px) {
   .hero-section { padding: 58px 18px 74px; }
-  .hero-title { font-size: clamp(2.75rem, 13vw, 4rem); }
+  .hero-title { font-size: clamp(2.45rem, 10.5vw, 3.55rem); letter-spacing: -0.065em; }
   .hero-subtitle { font-size: 1rem; }
   .hero-actions { flex-direction: column; }
   .btn-hero-primary, .btn-hero-secondary { width: 100%; }
@@ -233,4 +234,8 @@
   .values-container { grid-template-columns: 1fr; }
   .value-card { min-height: 190px; }
   .cta-section { padding: 72px 18px; }
+}
+
+@media (max-width: 390px) {
+  .hero-title { font-size: clamp(2.2rem, 10vw, 2.55rem); }
 }

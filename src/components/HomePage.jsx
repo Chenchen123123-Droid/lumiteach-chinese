@@ -43,7 +43,11 @@ function HomePage({ onSelectTool, onNavigate }) {
               {isZh ? '为中文教师打造的课堂工作台' : 'A classroom workspace for Chinese teachers'}
             </div>
             <h1 className="hero-title">
-              {isZh ? '把备课的时间，\n还给课堂。' : 'Spend less time preparing.\nTeach more.'}
+              {isZh ? (
+                <><span>把备课的时间，</span><span>还给课堂。</span></>
+              ) : (
+                <><span>Spend less time preparing.</span><span>Teach more.</span></>
+              )}
             </h1>
             <p className="hero-subtitle">
               {isZh

@@ -182,13 +182,15 @@ function AppContent() {
         <footer className="footer">
           <div className="footer-main">
             <div className="footer-brand-section">
-              <span className="footer-icon">📚</span>
+              <span className="footer-icon">汉</span>
               <div className="footer-brand-text">
                 <span className="footer-text">HanClass</span>
                 <span className="footer-subtitle">{lang === 'zh' ? '中文课堂工具箱' : 'Chinese Class Toolkit'}</span>
+                <p>{lang === 'zh' ? '把备课的时间，还给真正重要的课堂。' : 'Give preparation time back to the classroom.'}</p>
               </div>
             </div>
             <div className="footer-nav">
+              <span className="footer-column-label">{lang === 'zh' ? '快速入口' : 'Explore'}</span>
               <div className="footer-nav-group">
                 <a href="/" onClick={event => { event.preventDefault(); handleNavigate('home'); }}>{lang === 'zh' ? '首页' : 'Home'}</a>
                 <a href="/tools" onClick={event => { event.preventDefault(); handleNavigate('tools'); }}>{lang === 'zh' ? '全部工具' : 'Tools'}</a>
@@ -198,16 +200,16 @@ function AppContent() {
               </div>
             </div>
             <div className="footer-contact">
-              <span className="footer-contact-label">{lang === 'zh' ? '联系方式' : 'Contact'}</span>
+              <span className="footer-column-label">{lang === 'zh' ? '保持联系' : 'Stay in touch'}</span>
               <div className="contact-items">
-                <a href="mailto:2654450145@qq.com"><span className="contact-label">QQ：</span>2654450145@qq.com</a>
-                <a href="mailto:yy2068184@gmail.com"><span className="contact-label">Gmail：</span>yy2068184@gmail.com</a>
-                <span className="contact-item"><span className="contact-label">小红书：</span>对外汉语备课实验室</span>
+                <a href="mailto:2654450145@qq.com"><span className="contact-label">QQ MAIL</span><span>2654450145@qq.com</span></a>
+                <a href="mailto:yy2068184@gmail.com"><span className="contact-label">GMAIL</span><span>yy2068184@gmail.com</span></a>
+                <span className="contact-item"><span className="contact-label">小红书</span><span>对外汉语备课实验室</span></span>
               </div>
             </div>
           </div>
           <div className="footer-bottom">
-            <span>© 2026 HanClass. All rights reserved.</span>
+            <span>© 2026 HanClass</span>
             <span className="footer-tagline">{lang === 'zh' ? '让中文课堂更有趣，也让备课更简单' : 'Make Chinese classes more engaging and lesson prep easier'}</span>
           </div>
         </footer>
