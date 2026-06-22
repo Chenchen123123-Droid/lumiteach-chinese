@@ -29,7 +29,17 @@ DEEPSEEK_API_KEY=sk-your-key-here
 - Do NOT commit `.env.local` to GitHub
 - The API key will NOT be exposed to the frontend
 
-### Step 3: Vercel Deployment
+### Step 3A: Zeabur Deployment
+
+1. Open the HanClass service in Zeabur.
+2. Navigate to the service **Variables** tab.
+3. Add `DEEPSEEK_API_KEY` with your API key as the value.
+4. Redeploy the service.
+5. Verify `/api/health` before testing question generation.
+
+See `ZEABUR_DEPLOY.md` for the complete deployment process.
+
+### Step 3B: Vercel Deployment (optional)
 
 1. Go to your Vercel project
 2. Navigate to Project Settings → Environment Variables

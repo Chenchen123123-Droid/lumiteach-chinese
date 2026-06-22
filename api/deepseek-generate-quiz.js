@@ -6,7 +6,7 @@
  * Endpoint: POST /api/deepseek-generate-quiz
  */
 
-const DEEPSEEK_API_URL = 'https://api.deepseek.com/chat/completions';
+const DEEPSEEK_API_URL = process.env.DEEPSEEK_API_URL || 'https://api.deepseek.com/chat/completions';
 const MODEL = 'deepseek-chat';
 
 const SYSTEM_PROMPT = `你是一名专业对外汉语老师，擅长为中文学习者设计课堂互动题目。
@@ -171,17 +171,40 @@ export default async function handler(req, res) {
     });
   }
 
-  const numCount = parseInt(count, 10);
-  if (isNaN(numCount) || numCount < 1 || numCount > 50) {
+  const cleanTopic = String(topic).trim();
+  const cleanLevel = String(level).trim();
+  const allowedQuestionTypes = new Set([
+    'multiple_choice',
+    'true_false',
+    'word_understanding',
+    'reading_comprehension'
+  ]);
+
+  if (!cleanTopic || cleanTopic.length > 200 || cleanLevel.length > 30) {
     return res.status(400).json({
       success: false,
-      error: 'count must be a number between 1 and 50'
+      error: 'topic or level is too long'
+    });
+  }
+
+  if (questionTypes.some(type => !allowedQuestionTypes.has(type))) {
+    return res.status(400).json({
+      success: false,
+      error: 'questionTypes contains an unsupported type'
+    });
+  }
+
+  const numCount = parseInt(count, 10);
+  if (isNaN(numCount) || numCount < 1 || numCount > 20) {
+    return res.status(400).json({
+      success: false,
+      error: 'count must be a number between 1 and 20'
     });
   }
 
   try {
     // Call DeepSeek API
-    const userPrompt = buildUserPrompt(topic, level, numCount, questionTypes);
+    const userPrompt = buildUserPrompt(cleanTopic, cleanLevel, numCount, questionTypes);
 
     const response = await fetch(DEEPSEEK_API_URL, {
       method: 'POST',
@@ -197,7 +220,8 @@ export default async function handler(req, res) {
         ],
         temperature: 0.7,
         max_tokens: 4096
-      })
+      }),
+      signal: AbortSignal.timeout(45000)
     });
 
     if (!response.ok) {

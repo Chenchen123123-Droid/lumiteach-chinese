@@ -1,6 +1,8 @@
 # 中文课堂互动游戏生成器
 
-一个专为对外汉语老师、中文老师设计的课堂互动工具。输入中文课文，一键生成多种互动游戏。
+一个专为对外汉语老师、中文老师设计的课堂工作台，包含课堂互动游戏、备课生成和课堂管理工具。
+
+当前项目使用 Vite + React 构建前端，并通过 Express 提供生产静态托管、DeepSeek API 和 Socket.IO 联机基础，可直接作为 Node.js 服务部署到 Zeabur。
 
 ## 功能特色
 
@@ -49,6 +51,15 @@ npm run dev
 ```bash
 npm run build
 ```
+
+### 启动生产服务器
+
+```bash
+npm run build
+npm start
+```
+
+默认访问 http://localhost:8080。Zeabur 部署步骤见 [ZEABUR_DEPLOY.md](./ZEABUR_DEPLOY.md)。
 
 ## 项目结构
 
