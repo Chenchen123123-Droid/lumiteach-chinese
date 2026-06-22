@@ -8,6 +8,7 @@ import './Navbar.css';
 function Navbar({ onNavigate, currentPage = 'home' }) {
   const { lang, setLang } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +23,7 @@ function Navbar({ onNavigate, currentPage = 'home' }) {
 		if (onNavigate) {
 			onNavigate(page);
 		}
+		setMobileOpen(false);
 	};
 
 	const isActive = (page) => currentPage === page ? 'active' : '';
@@ -47,16 +49,6 @@ function Navbar({ onNavigate, currentPage = 'home' }) {
 							{lang === 'zh' ? '全部工具' : 'Tools'}
 						</a>
 					</li>
-					<li className={`nav-item ${isActive('pricing')}`}>
-						<a href="#" onClick={(e) => handleNavClick('pricing', e)}>
-							{lang === 'zh' ? '价格方案' : 'Pricing'}
-						</a>
-					</li>
-					<li className={`nav-item ${isActive('ai')}`}>
-						<a href="#" onClick={(e) => handleNavClick('ai', e)}>
-							{lang === 'zh' ? 'AI备课' : 'AI Prep'}
-						</a>
-					</li>
 					<li className={`nav-item ${isActive('contact')}`}>
 						<a href="#" onClick={(e) => handleNavClick('contact', e)}>
 							{lang === 'zh' ? '联系' : 'Contact'}
@@ -65,6 +57,7 @@ function Navbar({ onNavigate, currentPage = 'home' }) {
 				</ul>
 
 				<div className="navbar-actions">
+					<span className="beta-pill">BETA</span>
 					<select
 						className="lang-select"
 						value={lang}
@@ -76,8 +69,29 @@ function Navbar({ onNavigate, currentPage = 'home' }) {
 					<button className="btn-cta" onClick={(e) => handleNavClick('tools', e)}>
 						{lang === 'zh' ? '免费开始' : 'Start for Free'}
 					</button>
+					<button
+						className="mobile-menu-toggle"
+						type="button"
+						aria-expanded={mobileOpen}
+						aria-label={lang === 'zh' ? '打开导航菜单' : 'Open navigation menu'}
+						onClick={() => setMobileOpen(value => !value)}
+					>
+						<span></span><span></span><span></span>
+					</button>
 				</div>
 			</div>
+			{mobileOpen && (
+				<div className="mobile-menu">
+					<a href="/" onClick={(e) => handleNavClick('home', e)}>{lang === 'zh' ? '首页' : 'Home'}</a>
+					<a href="/tools" onClick={(e) => handleNavClick('tools', e)}>{lang === 'zh' ? '全部工具' : 'Tools'}</a>
+					<a href="/contact" onClick={(e) => handleNavClick('contact', e)}>{lang === 'zh' ? '联系与反馈' : 'Contact & feedback'}</a>
+					<div className="mobile-language">
+						<span>{lang === 'zh' ? '语言' : 'Language'}</span>
+						<button className={lang === 'zh' ? 'active' : ''} onClick={() => setLang('zh')}>中文</button>
+						<button className={lang === 'en' ? 'active' : ''} onClick={() => setLang('en')}>English</button>
+					</div>
+				</div>
+			)}
 		</nav>
 	);
 }

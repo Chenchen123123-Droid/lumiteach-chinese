@@ -194,8 +194,6 @@ function AppContent() {
               <div className="footer-nav-group">
                 <a href="/" onClick={event => { event.preventDefault(); handleNavigate('home'); }}>{lang === 'zh' ? '首页' : 'Home'}</a>
                 <a href="/tools" onClick={event => { event.preventDefault(); handleNavigate('tools'); }}>{lang === 'zh' ? '全部工具' : 'Tools'}</a>
-                <a href="/pricing" onClick={event => { event.preventDefault(); handleNavigate('pricing'); }}>{lang === 'zh' ? '价格方案' : 'Pricing'}</a>
-                <a href="/ai" onClick={event => { event.preventDefault(); handleNavigate('ai'); }}>{lang === 'zh' ? 'AI备课' : 'AI Prep'}</a>
                 <a href="/contact" onClick={event => { event.preventDefault(); handleNavigate('contact'); }}>{lang === 'zh' ? '联系' : 'Contact'}</a>
               </div>
             </div>

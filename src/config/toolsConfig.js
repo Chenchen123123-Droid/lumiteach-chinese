@@ -28,6 +28,34 @@ export const categories = {
   }
 };
 
+export const teachingPhases = {
+  warmup: {
+    id: 'warmup', titleZh: '课前热场', titleEn: 'Warm-up',
+    descriptionZh: '5–10 分钟快速调动课堂气氛', descriptionEn: 'Quick 5–10 minute starters'
+  },
+  teaching: {
+    id: 'teaching', titleZh: '课中互动', titleEn: 'In class',
+    descriptionZh: '讲解、操练和小组竞赛', descriptionEn: 'Teaching, practice, and team activities'
+  },
+  review: {
+    id: 'review', titleZh: '课后巩固', titleEn: 'Review',
+    descriptionZh: '复习、作业和可打印材料', descriptionEn: 'Review, homework, and printables'
+  },
+  routine: {
+    id: 'routine', titleZh: '课堂管理', titleEn: 'Class routine',
+    descriptionZh: '点名、分组和座位安排', descriptionEn: 'Picking, grouping, and seating'
+  }
+};
+
+const phaseAssignments = {
+  warmup: ['gacha', 'pinyinwheel', 'pinyinguess', 'matching', 'fliptiles', 'twopuzzle', 'luckypicker'],
+  teaching: ['slingshot', 'typing', 'snake', 'pinyinwheel', 'pinyinguess', 'matching', 'disappearing', 'sentence', 'gomoku', 'guesschar', 'luckybox', 'minesweeper', 'fliptiles', 'twopuzzle', 'climbmountain', 'readingaudio'],
+  review: ['typing', 'snake', 'matching', 'disappearing', 'sentence', 'guesschar', 'worksheet', 'hanzicomponent', 'chineseuno', 'spotit', 'readingaudio', 'wordcloud'],
+  routine: ['luckypicker', 'seatmanager']
+};
+
+const featuredToolIds = ['pinyinwheel', 'slingshot', 'worksheet', 'readingaudio', 'luckypicker', 'twopuzzle'];
+
 export const tools = [
   {
     id: 'slingshot', icon: '🎯', category: 'games', access: 'free', requiresText: false,
@@ -222,6 +250,14 @@ export const tools = [
     load: () => import('../components/SeatManagerTool')
   }
 ];
+
+tools.forEach(tool => {
+  tool.phases = Object.entries(phaseAssignments)
+    .filter(([, ids]) => ids.includes(tool.id))
+    .map(([phaseId]) => phaseId);
+  tool.featured = featuredToolIds.includes(tool.id);
+  if (tool.featured) tool.preview = `/previews/${tool.id}.png`;
+});
 
 export const toolsConfig = Object.fromEntries(tools.map(tool => [tool.id, tool]));
 

@@ -18,15 +18,26 @@
 .nav-item a:hover { background: #edf3f0; color: #0f6a63; }
 .nav-item.active a { background: #e5f2ef; color: #0f6a63; }
 .navbar-actions { gap: 10px; }
+.beta-pill { padding: 5px 8px; border-radius: 7px; background: #e7f3ef; color: #0f6a63; font-size: .64rem; font-weight: 850; letter-spacing: .08em; }
 .lang-select { min-height: 42px; padding: 0 34px 0 12px; border: 1px solid #dfe4df; border-radius: 10px; background: #fff; color: #344357; font-size: 0.84rem; }
 .lang-select:focus { border-color: #0f766e; outline: 3px solid rgba(15, 118, 110, 0.12); }
 .navbar .btn-cta { min-height: 42px; padding: 0 18px; border-radius: 10px; background: #14243a; color: #fff; font-size: 0.85rem; font-weight: 780; }
 .navbar .btn-cta:hover { background: #0f766e; transform: translateY(-1px); }
+.mobile-menu-toggle,.mobile-menu { display: none; }
 
 @media (max-width: 820px) {
   .navbar-container { height: 64px; padding: 0 16px; }
   .navbar-menu { display: none; }
   .navbar-actions { margin-left: auto; }
+  .mobile-menu-toggle { display: flex; width: 40px; height: 40px; flex-direction: column; align-items: center; justify-content: center; gap: 4px; border: 1px solid #dfe4df; border-radius: 10px; background: #fff; }
+  .mobile-menu-toggle span { width: 17px; height: 2px; border-radius: 2px; background: #203248; }
+  .mobile-menu { display: grid; position: absolute; top: 64px; right: 12px; left: 12px; padding: 12px; border: 1px solid #dfe4df; border-radius: 15px; background: #fff; box-shadow: 0 18px 44px rgba(19,34,56,.16); }
+  .mobile-menu>a { padding: 12px 13px; border-radius: 9px; color: #253449; font-size: .92rem; font-weight: 750; text-decoration: none; }
+  .mobile-menu>a:hover { background: #edf5f2; color: #0f6a63; }
+  .mobile-language { display: flex; align-items: center; gap: 6px; margin-top: 7px; padding: 11px 8px 2px; border-top: 1px solid #e7eae6; color: #718092; font-size: .76rem; }
+  .mobile-language span { margin-right: auto; }
+  .mobile-language button { padding: 6px 9px; border-radius: 7px; background: #f2f4f1; color: #607083; font-size: .72rem; font-weight: 750; }
+  .mobile-language button.active { background: #e2f1ee; color: #0f675f; }
 }
 
 @media (max-width: 560px) {
@@ -35,4 +46,7 @@
   .brand-text { font-size: 1.02rem; }
   .lang-select { max-width: 98px; min-height: 38px; }
   .navbar .btn-cta { display: none; }
+  .beta-pill { display: none; }
 }
+
+@media (max-width: 420px) { .navbar-actions>.lang-select { display: none; } }

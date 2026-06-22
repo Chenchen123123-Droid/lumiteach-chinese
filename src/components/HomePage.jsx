@@ -32,6 +32,9 @@ function HomePage({ onSelectTool, onNavigate }) {
             ? 'HanClass 正在 Free Beta 公测中，所有工具暂时免费开放。'
             : 'HanClass is in Free Beta. All tools are currently free to try.'}
         </span>
+        <button type="button" onClick={() => handleNav('contact')}>
+          {isZh ? '反馈建议' : 'Send feedback'}
+        </button>
       </div>
 
       {/* Hero Section */}
